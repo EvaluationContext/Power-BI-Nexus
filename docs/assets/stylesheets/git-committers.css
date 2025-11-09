@@ -1,0 +1,134 @@
+/* Git Committers Plugin - Contributor Avatars Styling */
+
+/* Container for git committers section */
+.git-committers {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* Heading for contributors section */
+.git-committers__title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--md-default-fg-color--light);
+    margin-bottom: 1rem;
+}
+
+/* List of contributors */
+.git-committers__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Individual contributor item */
+.git-committers__item {
+    display: inline-block;
+}
+
+/* Contributor link */
+.git-committers__contributor {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.git-committers__contributor:hover {
+    transform: translateY(-2px);
+    opacity: 0.8;
+}
+
+/* Contributor avatar image - circular style */
+.git-committers__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--md-default-bg-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: block;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.git-committers__contributor:hover .git-committers__avatar {
+    border-color: var(--md-primary-fg-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Tooltip for contributor name */
+.git-committers__contributor::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    background-color: var(--md-default-fg-color);
+    color: var(--md-default-bg-color);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 1000;
+}
+
+.git-committers__contributor:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-8px);
+}
+
+/* Arrow for tooltip */
+.git-committers__contributor::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--md-default-fg-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 999;
+}
+
+.git-committers__contributor:hover::before {
+    opacity: 1;
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] .git-committers {
+    border-top-color: var(--md-default-fg-color--lightest);
+}
+
+[data-md-color-scheme="slate"] .git-committers__avatar {
+    border-color: var(--md-code-bg-color);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 76.1875em) {
+    .git-committers {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+    }
+    
+    .git-committers__avatar {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media screen and (max-width: 44.9375em) {
+    .git-committers__avatar {
+        width: 32px;
+        height: 32px;
+    }
+}

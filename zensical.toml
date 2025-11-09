@@ -1,0 +1,184 @@
+[project]
+
+site_name = "Power BI Nexus"
+
+site_description = "Community-driven hub for all things Power BI. Curated best practices, resources and learning tracks"
+
+site_author = "Jake Duddy"
+
+site_url = "https://www.evaluationcontext.github.io/Power-BI-Nexus"
+
+repo_url = "https://github.com/EvaluationContext/Power-BI-Nexus"
+
+repo_name = "Power-BI-Nexus"
+
+copyright = """
+Copyright &copy; 2025 Jake Duddy
+"""
+
+# Read more: https://zensical.org/docs/setup/navigation/
+nav = [
+  { "Home" = "index.md" },
+  { "Best Practices" = [
+    { "Overview" = "best-practices/index.md" },
+    { "Data Modeling" = "best-practices/data-modeling.md" },
+    { "Storage Modes" = [
+      { "Overview" = "best-practices/storage-modes.md" },
+      { "Import Mode" = "best-practices/storage-modes/import-mode.md" },
+      { "DirectQuery" = "best-practices/storage-modes/directquery.md" },
+      { "Composite Models" = "best-practices/storage-modes/composite-models.md" },
+      { "Direct Lake" = "best-practices/storage-modes/direct-lake.md" },
+    ]},
+    { "DAX" = "best-practices/dax.md" },
+    { "Data Preparation" = "best-practices/data-preparation.md" },
+    { "Security" = "best-practices/security.md" },
+    { "Tools" = "best-practices/tools.md" },
+    { "Deployment" = "best-practices/deployment.md" },
+    { "Visualization" = "best-practices/visualization.md" },
+  ]},
+  { "Learning Tracks" = [
+    { "Overview" = "learning-tracks/index.md" },
+    { "Beginner" = "learning-tracks/beginner.md" },
+    { "Intermediate" = "learning-tracks/intermediate.md" },
+    { "Advanced" = "learning-tracks/advanced.md" },
+    { "Certifications" = "learning-tracks/certifications.md" },
+  ]},
+  { "Resources" = "resources.md" },
+  { "Contribute" = "contribute.md" },
+]
+
+# Read more: https://zensical.org/docs/customization/#additional-css
+extra_css = [
+  "assets/stylesheets/pill.css",
+  "https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css",
+  "assets/stylesheets/datatables-custom.css",
+  "assets/stylesheets/git-committers.css",
+  "assets/stylesheets/upvotes.css",
+  "assets/stylesheets/rss-carousel.css"
+]
+
+# Read more: https://zensical.org/docs/customization/#additional-javascript
+extra_javascript = [
+  "https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js",
+  "https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js",
+  "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js",
+  "https://code.jquery.com/jquery-3.7.1.min.js",
+  "https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js",
+  "assets/javascript/firebase-config.js",
+  "assets/javascript/upvotes.js",
+  "assets/javascript/datatables-init.js",
+  "assets/javascript/rss-carousel.js"
+]
+
+[project.theme]
+# Overwrites
+# Read more:
+# - https://zensical.org/docs/customization/#extending-the-theme
+#
+#custom_dir = "overrides"
+
+#favicon = "assets/images/favicon.png"
+
+language = "en"
+
+# Zensical provides a number of feature toggles that change the behavior
+# of the documentation site.
+features = [
+    "announce.dismiss",
+    # "content.action.edit",
+    # "content.action.view",
+    # https://zensical.org/docs/authoring/code-blocks/#code-annotations
+    # "content.code.annotate",
+    "content.code.copy",
+    # https://zensical.org/docs/authoring/code-blocks/#code-selection-button
+    "content.code.select",
+    # https://zensical.org/docs/authoring/footnotes/#footnote-tooltips
+    "content.footnote.tooltips",
+    # https://zensical.org/docs/authoring/content-tabs/#linked-content-tabs
+    "content.tabs.link",
+    # https://zensical.org/docs/authoring/tooltips/#improved-tooltips
+    "content.tooltips",
+    # https://zensical.org/docs/setup/header/#automatic-hiding
+    "header.autohide",
+    # https://zensical.org/docs/setup/navigation/#navigation-expansion
+    # "navigation.expand",
+    # https://zensical.org/docs/setup/footer/#navigation
+    # "navigation.footer",
+    # https://zensical.org/docs/setup/navigation/#section-index-pages
+    "navigation.indexes",
+    # https://zensical.org/docs/setup/navigation/#instant-navigation
+    "navigation.instant",
+    # https://zensical.org/docs/setup/navigation/#instant-prefetching
+    "navigation.instant.prefetch",
+    # https://zensical.org/docs/setup/navigation/#progress-indicator
+    #"navigation.instant.progress"
+    # https://zensical.org/docs/setup/navigation/#navigation-path
+    "navigation.path",
+    # https://zensical.org/docs/setup/navigation/#navigation-pruning
+    #"navigation.prune",
+    # https://zensical.org/docs/setup/navigation/#navigation-sections
+    # "navigation.sections",
+    # https://zensical.org/docs/setup/navigation/#navigation-tabs
+    "navigation.tabs",
+    # https://zensical.org/docs/setup/navigation/#sticky-navigation-tabs
+    #"navigation.tabs.sticky",
+    # https://zensical.org/docs/setup/navigation/#back-to-top-button
+    "navigation.top",
+    # https://zensical.org/docs/setup/navigation/#anchor-tracking
+    "navigation.tracking",
+    # https://zensical.org/docs/setup/search/#search-highlighting
+    "search.highlight",
+    # https://zensical.org/docs/setup/navigation/#anchor-following
+    "toc.follow"
+    # https://zensical.org/docs/setup/navigation/#navigation-integration
+    #"toc.integrate"
+]
+
+# Palette toggle for automatic mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+primary = "pink"
+accent = "pink"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+# Palette toggle for light mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "pink"
+accent = "pink"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+# Palette toggle for dark mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "pink"
+accent = "pink"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+#[project.theme.font]
+#text = "Inter"
+#code = "Jetbrains Mono"
+
+[project.theme.icon]
+logo = "material/hub-outline"
+repo = "fontawesome/brands/github"
+
+# ----------------------------------------------------------------------------
+# Plugins - MkDocs compatibility for git contributors
+# ----------------------------------------------------------------------------
+[[project.plugins.git-committers]]
+enabled = true
+repository = "EvaluationContext/Power-BI-Nexus"
+branch = "main"
+
+# ----------------------------------------------------------------------------
+# The "extra" section contains miscellaneous settings.
+# ----------------------------------------------------------------------------
+#[[project.extra.social]]
+#icon = "fontawesome/brands/github"
+#link = "https://github.com/user/repo"

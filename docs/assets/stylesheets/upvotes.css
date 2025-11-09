@@ -1,0 +1,120 @@
+/* Upvote button and counter styling */
+
+.upvote-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0;
+  justify-content: flex-start;
+}
+
+.upvote-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  min-width: 20px;
+  min-height: 20px;
+  color: var(--md-accent-fg-color);
+}
+
+.upvote-btn:hover:not(:disabled) {
+  transform: scale(1.2);
+}
+
+.upvote-btn:active:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.upvote-btn.voted {
+  color: var(--md-accent-fg-color);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.upvote-btn.loading {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.upvote-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.upvote-icon {
+  display: block;
+  line-height: 1;
+  width: 0.8rem;
+  height: 0.8rem;
+  fill: currentColor;
+}
+
+.vote-count {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--md-default-fg-color);
+  text-align: center;
+}
+
+/* Vote animation */
+@keyframes vote-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.upvote-btn.vote-animation {
+  animation: vote-pulse 0.4s ease;
+}
+
+/* Loading state */
+.upvote-loading {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] .upvote-btn {
+  color: var(--md-accent-fg-color);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .upvote-btn {
+    min-width: 24px;
+    min-height: 24px;
+    font-size: 0.9rem;
+  }
+
+  .upvote-icon {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .vote-count {
+    font-size: 0.75rem;
+  }
+}
+
+/* Table cell alignment */
+table.dataTable tbody td .upvote-container {
+  margin: 0;
+}
+
+table.dataTable tbody td:has(.upvote-container) {
+  vertical-align: top;
+}

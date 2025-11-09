@@ -1,0 +1,26 @@
+{
+    "name": "zensical",
+    "image": "mcr.microsoft.com/devcontainers/python",
+    "forwardPorts": [8000],
+    "postCreateCommand": "pip install -r requirements.txt",
+    "customizations": {
+        "vscode": {
+                "extensions": [
+                    // Git
+                    "mhutchie.git-graph",
+                    // Spell checker
+                    "streetsidesoftware.code-spell-checker",
+                    // TOML support for zensical.toml
+                    "tamasfe.even-better-toml",
+                    // Markdown support
+                    "yzhang.markdown-all-in-one"
+                ],
+                "settings": {
+                    "terminal.integrated.defaultProfile.linux": "zsh",
+                    "files.associations": {
+                        "zensical.toml": "toml"
+                    }
+                }
+        }
+    }
+}

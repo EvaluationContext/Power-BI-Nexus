@@ -1,0 +1,56 @@
+/* Category pill badges */
+.type-label {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 0.5rem;
+  font-weight: 500;
+  margin-right: 6px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border: 1px solid;
+}
+
+/* Tighter spacing for type labels in tables */
+table .type-label {
+  margin-right: 2px;
+  white-space: nowrap;
+}
+
+/* Prevent wrapping in table cells with type labels */
+table td:has(.type-label),
+table th:has(.type-label) {
+  white-space: nowrap;
+}
+
+/* Category colors */
+.type-label.official { 
+  background-color: #FFFFFF00;
+  border-color: #2a67ce;
+  color: #2a67ce;
+}
+
+.type-label.blog { 
+  background-color: #FFFFFF00;
+  border-color: #9334e6;
+  color: #9334e6;
+}
+
+.type-label.community { 
+  background-color: #FFFFFF00;
+  border-color: #137333;
+  color: #137333;
+}
+
+.type-label.video { 
+  background-color: #FFFFFF00;
+  border-color: #FF0000;
+  color: #FF0000;
+}
+
+.type-label.tool { 
+  background-color: #FFFFFF00;
+  border-color: #e37400;
+  color: #e37400;
+}
