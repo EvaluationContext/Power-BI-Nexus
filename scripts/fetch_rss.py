@@ -133,6 +133,18 @@ def fetch_feed(feed_info):
             elif hasattr(entry, 'creator'):
                 author = entry.creator
             
+            # Get image/thumbnail
+            image_url = ''
+            if hasattr(entry, 'media_thumbnail') and entry.media_thumbnail:
+                image_url = entry.media_thumbnail[0].get('url', '')
+            elif hasattr(entry, 'media_content') and entry.media_content:
+                image_url = entry.media_content[0].get('url', '')
+            elif hasattr(entry, 'enclosures') and entry.enclosures:
+                for enclosure in entry.enclosures:
+                    if enclosure.get('type', '').startswith('image/'):
+                        image_url = enclosure.get('href', '')
+                        break
+            
             items.append({
                 'title': entry.get('title', 'Untitled'),
                 'link': entry.get('link', ''),
@@ -142,6 +154,7 @@ def fetch_feed(feed_info):
                 'source': feed_info['name'],
                 'category': feed_info['category'],
                 'guid': entry.get('id', entry.get('link', f"{feed_info['name']}-{entry.get('title')}")),
+                'imageUrl': image_url,
                 'fetchedAt': firestore.SERVER_TIMESTAMP
             })
         
@@ -166,15 +179,17 @@ def filter_recent_items(items, days=7):
     return filtered
 
 
-def clear_old_items(db):
-    """Clear old items from Firestore"""
+def clear_old_items(db, cutoff_date):
+    """Clear items older than cutoff date from Firestore"""
     items_ref = db.collection('rssItems')
-    docs = items_ref.stream()
+    
+    # Query for old items (older than 7 days)
+    old_docs = items_ref.where('pubDate', '<', cutoff_date.isoformat()).stream()
     
     count = 0
     batch = db.batch()
     
-    for doc in docs:
+    for doc in old_docs:
         batch.delete(doc.reference)
         count += 1
         
@@ -183,14 +198,14 @@ def clear_old_items(db):
             batch.commit()
             batch = db.batch()
     
-    if count % 500 != 0:
+    if count % 500 != 0 and count > 0:
         batch.commit()
     
     print(f"Cleared {count} old items")
 
 
 def save_to_firestore(db, items):
-    """Save items to Firestore"""
+    """Save items to Firestore (upsert based on guid to prevent duplicates)"""
     if not items:
         print("No items to save")
         return
@@ -199,8 +214,11 @@ def save_to_firestore(db, items):
     items_ref = db.collection('rssItems')
     
     for i, item in enumerate(items):
-        doc_ref = items_ref.document()  # Auto-generate ID
-        batch.set(doc_ref, item)
+        # Use a hash of the guid as document ID to prevent duplicates
+        import hashlib
+        doc_id = hashlib.md5(item['guid'].encode()).hexdigest()
+        doc_ref = items_ref.document(doc_id)
+        batch.set(doc_ref, item, merge=True)  # merge=True for upsert behavior
         
         # Commit in batches of 500
         if (i + 1) % 500 == 0:
@@ -245,10 +263,11 @@ def main():
         # Sort by date (newest first)
         recent_items.sort(key=lambda x: x['pubDate'], reverse=True)
         
-        # Clear old items
-        clear_old_items(db)
+        # Clear items older than 7 days
+        cutoff_date = datetime.now() - timedelta(days=7)
+        clear_old_items(db, cutoff_date)
         
-        # Save new items
+        # Save new items (will upsert, preventing duplicates)
         save_to_firestore(db, recent_items)
         
         print('=== RSS Feed Aggregation Completed Successfully ===')

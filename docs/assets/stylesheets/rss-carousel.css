@@ -77,7 +77,8 @@
 }
 
 .rss-item.active {
-  display: block;
+  display: flex;
+  gap: 1.5rem;
 }
 
 @keyframes fadeIn {
@@ -91,7 +92,28 @@
   }
 }
 
+.rss-item-image {
+  flex-shrink: 0;
+  width: 280px;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--md-default-fg-color--lightest);
+}
+
+.rss-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.rss-item-image:hover img {
+  transform: scale(1.05);
+}
+
 .rss-item-content {
+  flex: 1;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -279,6 +301,15 @@
 
   .rss-item {
     padding: 1.5rem 1rem;
+  }
+
+  .rss-item.active {
+    flex-direction: column;
+  }
+
+  .rss-item-image {
+    width: 100%;
+    height: 200px;
   }
 
   .rss-item-title {

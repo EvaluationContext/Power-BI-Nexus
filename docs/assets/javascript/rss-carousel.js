@@ -57,7 +57,8 @@ class RSSCarousel {
           contentSnippet: data.contentSnippet || '',
           author: data.author || data.source,
           source: data.source || 'Unknown',
-          category: data.category || 'Blog'
+          category: data.category || 'Blog',
+          imageUrl: data.imageUrl || ''
         });
       });
 
@@ -125,6 +126,11 @@ class RSSCarousel {
   renderItems() {
     return this.items.map((item, index) => `
       <div class="rss-item" data-index="${index}">
+        ${item.imageUrl ? `
+          <div class="rss-item-image">
+            <img src="${this.escapeHtml(item.imageUrl)}" alt="${this.escapeHtml(item.title)}" loading="lazy">
+          </div>
+        ` : ''}
         <div class="rss-item-content">
           <span class="rss-item-category ${item.category.toLowerCase()}">${item.category}</span>
           <h4 class="rss-item-title">
