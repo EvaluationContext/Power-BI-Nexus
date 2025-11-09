@@ -1,137 +1,33 @@
-name: Fetch RSS Feedsname: Fetch RSS Feedsname: Fetch RSS Feedsname: Fetch RSS Feeds
-
-
+name: Fetch RSS Feeds
 
 on:
-
   schedule:
-
-    # Run daily at midnight UTCon:
-
+    # Run daily at midnight UTC
     - cron: '0 0 * * *'
+  workflow_dispatch: # Allow manual trigger
 
-  workflow_dispatch: # Allow manual trigger  schedule:
-
-
-
-jobs:    # Run daily at midnight UTCon:on:
-
+jobs:
   fetch-rss:
-
-    runs-on: ubuntu-latest    - cron: '0 0 * * *'
-
+    runs-on: ubuntu-latest
     
-
-    steps:  workflow_dispatch: # Allow manual trigger  schedule:  schedule:
-
+    steps:
       - name: Checkout repository
-
         uses: actions/checkout@v4
 
-
-
-      - name: Setup Pythonjobs:    # Run daily at midnight UTC    # Run once per day at 6:00 AM UTC
-
+      - name: Setup Python
         uses: actions/setup-python@v5
-
-        with:  fetch-rss:
-
+        with:
           python-version: '3.11'
 
-    runs-on: ubuntu-latest    - cron: '0 0 * * *'    - cron: '0 6 * * *'
-
       - name: Install dependencies
+        run: pip install -r requirements.txt
 
-        run: pip install -r requirements.txt    
-
-
-
-      - name: Fetch RSS feeds    steps:  workflow_dispatch: # Allow manual trigger  workflow_dispatch: # Allow manual trigger
-
+      - name: Fetch RSS feeds
         env:
-
-          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}      - name: Checkout repository
-
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-
-          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}        uses: actions/checkout@v4
-
+          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
         run: python scripts/fetch_rss.py
 
-
-
       - name: Summary
-
-        run: echo "✅ RSS feeds fetched and cached in Firestore successfully!"      - name: Setup Node.jsjobs:jobs:
-
-
-        uses: actions/setup-node@v4
-
-        with:  fetch-rss:  fetch-rss:
-
-          node-version: '18'
-
-    runs-on: ubuntu-latest    runs-on: ubuntu-latest
-
-      - name: Install dependencies
-
-        run: npm install        
-
-
-
-      - name: Fetch RSS feeds    steps:    steps:
-
-        env:
-
-          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}      - name: Checkout repository      - name: Checkout repository
-
-          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-
-          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}        uses: actions/checkout@v4        uses: actions/checkout@v5
-
-        run: npm run fetch-rss
-
-
-
-      - name: Summary
-
-        run: echo "✅ RSS feeds fetched and cached in Firestore successfully!"      - name: Setup Node.js      - name: Setup Node.js
-
-
-        uses: actions/setup-node@v4        uses: actions/setup-node@v4
-
-        with:        with:
-
-          node-version: '18'          node-version: '18'
-
-
-
-      - name: Install dependencies      - name: Install dependencies
-
-        run: |        run: npm install
-
-          cd functions
-
-          npm install      - name: Fetch RSS feeds and update Firebase
-
-        env:
-
-      - name: Fetch RSS feeds          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-
-        env:          FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
-
-          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}        run: npm run fetch-rss
-
-          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-
-          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}      - name: Summary
-
-        run: node scripts/fetch-rss-github-action.js        run: echo "✅ RSS feeds fetched and cached in Firebase successfully!"
-
-
-      - name: Commit and push if changed
-        run: |
-          git config user.name "RSS Bot"
-          git config user.email "bot@github.com"
-          git add -A
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update RSS feeds [skip ci]" && git push)
+        run: echo "✅ RSS feeds fetched and cached in Firestore successfully!"
