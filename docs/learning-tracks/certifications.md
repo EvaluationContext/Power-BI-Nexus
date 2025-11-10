@@ -1,5 +1,7 @@
 ---
 icon: material/certificate
+hide:
+  - toc
 ---
 
 # Microsoft Power BI Certifications

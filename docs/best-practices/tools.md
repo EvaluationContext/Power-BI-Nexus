@@ -12,11 +12,5 @@ Essential tools for Power BI semantic model development, analysis, and optimizat
 | [DAX Studio](https://daxstudio.org/) | Query analysis, server timings, Vertipaq stats |
 | [Tabular Editor](https://github.com/TabularEditor/TabularEditor) | Advanced model editing, calculation groups |
 | [Fabric Capacity Metrics App](https://learn.microsoft.com/en-us/fabric/enterprise/metrics-app) | Capacity resource monitoring |
-| Vertipaq Analyzer | Compression, segment stats, optimization insight. Built into DAX Studio and Tabular Editor 3 |
-| ALM Toolkit | Application Lifecycle Management for Power BI |
-
-## VS Code Extensions
-
-- TMDL extension for Tabular Model Definition Language
-- Gerhart extension
-- Fabric extension
+| [Vertipaq Analyzer](https://github.com/sql-bi/VertiPaq-Analyzer) | Compression, segment stats, optimization insight. Built into DAX Studio and Tabular Editor 3 |
+| [ALM Toolkit](https://github.com/microsoft/Analysis-Services/tree/master/AlmToolkit#readme) | Application Lifecycle Management for Power BI |

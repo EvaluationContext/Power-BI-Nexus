@@ -21,7 +21,7 @@ Stop searching in silos. Contribute, learn, and stay current with the Power BI w
 
     ---
 
-    Suggested Learning Tracks to become a Power BI mastero
+    Suggested Learning Tracks to become a Power BI master
 
 -   :material-library:{ .lg .middle } [__Resources__](resources)
 

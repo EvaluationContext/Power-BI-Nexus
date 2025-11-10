@@ -39,19 +39,35 @@
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 12px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   height: 480px;
-}
-
-.rss-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  border-color: var(--md-primary-fg-color);
+  opacity: 0;
+  transform: scale(0.95);
 }
 
 .rss-item.active {
   display: flex;
+  opacity: 1;
+  transform: scale(1);
+  animation: fadeInScale 0.5s ease-in-out;
+}
+
+.rss-item.active:hover {
+  transform: translateY(-4px) scale(1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-color: var(--md-primary-fg-color);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .rss-item-image {

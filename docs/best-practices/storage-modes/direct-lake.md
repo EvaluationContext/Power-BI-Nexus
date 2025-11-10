@@ -4,124 +4,38 @@ icon: material/lightning-bolt
 
 # Direct Lake Mode Best Practices
 
-Direct Lake is a new storage mode exclusive to Microsoft Fabric that reads data directly from Delta Lake files without import or DirectQuery queries.
-
 ## Overview
 
-Direct Lake provides a hybrid approach:
-
-- Reads directly from **Delta/Parquet files** in OneLake
+- Fabric-exclusive storage mode reading directly from Delta Lake files
+- No import or DirectQuery queries required
 - Loads data into memory **on-demand** as needed
-- No data import or refresh required
 - Falls back to DirectQuery if data exceeds capacity
+- Always current with OneLake data (no refresh required)
 
-## Key Advantages
+## Delta table optimization
 
-- **No import refresh** - always current with OneLake data
-- **Fast query performance** - data loaded into memory like Import
-- **Automatic caching** - frequently accessed data stays in memory
-- **Fabric integration** - seamless with Lakehouses and Warehouses
+- **Use V-Order:** This optimizes the physical layout of your data for faster querying [^1]
+- **Merge small files:** Regularly compact Parquet files to improve query performance and merge changes with OPTIMIZE commands [^2]
+- **Compress data:** Use compression methods like Snappy for better performance
+- **Keep the Delta log minimal:** Minimize the effect of data updates on the Delta log
 
-## Architecture
+## Semantic model design
 
-```
-OneLake (Delta Lake) → Direct Lake → Power BI Semantic Model
-```
+- **Include only necessary columns:** Remove unnecessary columns to reduce storage size and loading time, even if they don't affect query performance directly
+- **Avoid views and bidirectional relationships:** Views can force a fallback to DirectQuery, and many-to-many or bidirectional relationships are not performant
+- P**re-aggregate data:** Reduce the data load by aggregating data before it is loaded into the model
 
-- Data stored as Delta tables in Lakehouse
-- Power BI reads Parquet files directly
-- VertiPaq engine caches data in memory
-- Automatic fallback to DirectQuery if needed
+## Query and Refresh Best Practices
 
-## Best Practices
+- **Write efficient DAX:** Filter only required columns in your DAX measures instead of using ALL(Table)
+- **Manage data refresh:** Control when your data is updated by disabling automatic propagation if you need to refresh the entire semantic model at once. Use manual or programmatic refreshes to ensure your model is in a consistent state
+- **Use pure Direct Lake mode for authoring:** Test your model in pure Direct Lake mode to ensure maximum performance before considering fallback options in production
 
-### Data Organization
+## Security and Permissions
 
-- **Use Lakehouses** for data lake scenarios with Delta tables
-- **Use Warehouses** for governed relational layer
-- Organize data in star schema in OneLake
-- Optimize Parquet file sizes (aim for 100-1000 MB per file)
-
-### Performance
-
-- **Monitor capacity CU impact** of refresh vs interactive workloads
-- Balance scheduling to avoid resource contention
-- Use Fabric Capacity Metrics app to track usage
-- Consider fallback behavior and capacity limits
-
-### Data Preparation
-
-- Apply transformations in Fabric Data Pipelines or Dataflows
-- Use Spark notebooks for complex transformations
-- Maintain data quality in OneLake layer
-- Leverage Delta Lake features (time travel, ACID transactions)
-
-## Direct Lake vs DirectQuery
-
-| Feature | Direct Lake | DirectQuery |
-|---------|-------------|-------------|
-| **Data Loading** | On-demand to memory | Query per visual |
-| **Performance** | Fast (memory-based) | Depends on source |
-| **Latency** | Near real-time | Near real-time |
-| **Source** | OneLake only | Many sources |
-| **Fallback** | To DirectQuery | N/A |
-
-## Direct Lake vs Import
-
-| Feature | Direct Lake | Import |
-|---------|-------------|--------|
-| **Refresh Required** | No | Yes |
-| **Data Latency** | As current as OneLake | Last refresh |
-| **Capacity Usage** | Dynamic | Fixed at refresh |
-| **Memory Management** | Automatic | Manual via refresh |
-
-## When to Use Direct Lake
-
-- ✅ Data already in Fabric Lakehouse/Warehouse
-- ✅ Need low latency over large datasets
-- ✅ Want to avoid import refresh scheduling
-- ✅ Fabric Premium capacity available
-- ✅ Data follows star schema design
-
-## When NOT to Use Direct Lake
-
-- ❌ Data not in Microsoft Fabric
-- ❌ Need to combine with external sources
-- ❌ Using Power BI Pro or PPU (requires Fabric)
-- ❌ Complex Power Query transformations required
-
-## Capacity Considerations
-
-- Monitor **Capacity Units (CU)** consumption
-- Direct Lake uses capacity for:
-    - Initial data loading into memory
-    - Query execution
-    - Automatic refresh of cached data
-- Plan capacity sizing based on dataset size and concurrency
-
-## Semantic Models
-
-- **Use Warehouses** for governed, certified semantic models
-- Apply business logic and transformations in Warehouse layer
-- Implement RLS in Warehouse views
-- Create optimized schemas for reporting
-
-## Limitations
-
-- Only works with Fabric Lakehouses and Warehouses
-- Requires Premium capacity (Fabric F SKU or P SKU)
-- Some DAX functions may trigger fallback to DirectQuery
-- Complex transformations should be done upstream
-
-## Migration Path
-
-1. Move data to Fabric Lakehouse/Warehouse
-2. Optimize data schema for analytics
-3. Create Direct Lake semantic model
-4. Test performance and capacity usage
-5. Monitor fallback scenarios
-6. Adjust based on usage patterns
-
-## Reference
+- **Distribute reports using apps:** Do not grant end-users direct workspace access. Instead, share reports and data through a Power BI app, as recommended in the Microsoft documentation
 
 [Direct Lake documentation](https://learn.microsoft.com/en-us/fabric/get-started/direct-lake-overview)
+
+[^1]: https://learn.microsoft.com/en-us/fabric/data-engineering/delta-optimization-and-v-order?tabs=sparksql
+[^2]: https://learn.microsoft.com/en-us/fabric/data-engineering/delta-optimization-and-v-order?tabs=sparksql#delta-table-maintenance

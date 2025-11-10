@@ -10,7 +10,7 @@ Welcome to Power BI! This track will help you build a solid foundation in busine
 
 !!! Success "Learning Objectives"
     
-    Build your first star schema model, create core measures (SUM, CALCULATE, DISTINCTCOUNT), publish and share a report.
+    Build your first star schema model, create core measures (SUM, CALCULATE, DISTINCTCOUNT), and publish and share a report.
 
 | Resource | Type | Theme | Cost | Focus |
 | --- | --- | --- | --- | --- |
@@ -19,7 +19,7 @@ Welcome to Power BI! This track will help you build a solid foundation in busine
 | [Introduction to Data Modeling for Power BI](https://www.sqlbi.com/p/introduction-to-data-modeling-for-power-bi-video-course/) | <span class="type-label course">Course</span> | <span class="type-label">Modeling</span> |  | Data modeling basics |
 | [Introducing DAX](https://www.sqlbi.com/p/introducing-dax-video-course/) | <span class="type-label course">Course</span> | <span class="type-label">DAX</span> |  | DAX fundamentals |
 | [Dashboard in a Day](https://learn.microsoft.com/en-us/training/paths/dashboard-in-a-day/) | <span class="type-label official">Official</span> | <span class="type-label">End-to-End</span> |  | Guided end-to-end build: model, report, dashboard, share |
-| [Power BI Introduction](https://courses.guyinacube.com/courses/powerbi-introduction) | <span class="type-label course">Course</span> | <span class="type-label">End-to-End</span> | <span class="type-label">$$</span> | Comprehensive beginner course covering Power BI fundamentals |
+| [Power BI Introduction](https://courses.guyinacube.com/courses/powerbi-introduction) | <span class="type-label course">Course</span> | <span class="type-label">End-to-End</span> | <span class="type-label">$</span> | Comprehensive beginner course covering Power BI fundamentals |
 
 ## Next Steps
 

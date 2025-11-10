@@ -7,7 +7,7 @@ hide:
 
 # Resources
 
-Resource to help you get up to speed with Power BI.
+Resources to help you get up to speed with Power BI.
 
 ??? info "RSS Feeds"
 
@@ -18,7 +18,7 @@ Resource to help you get up to speed with Power BI.
     - **Browser Extensions:** Feedly, Inoreader
     - **Desktop Apps:** NetNewsWire, Feedbro
     - **Mobile Apps:** Reeder, Feedly Mobile
-    - **Email:** Blogtrottr, Kill the Newslette
+    - **Email:** Blogtrottr, Kill the Newsletter!
 
     ??? tip "Managing RSS Feeds"
 
@@ -79,7 +79,7 @@ Resource to help you get up to speed with Power BI.
 |--------|----------|-------------|--------------|
 | [Power BI Blog](https://powerbi.microsoft.com/en-gb/blog/) | <span class="type-label official">Official</span> | Monthly feature updates, product announcements, and roadmap insights from Microsoft | [:material-rss:](https://powerbi.microsoft.com/en-gb/blog/feed/){target="_blank"} |
 | [SQLBI](https://www.sqlbi.com/articles/) | <span class="type-label blog">Blog</span> | Advanced DAX patterns, optimization techniques, and modeling best practices by [Marco Russo](https://www.linkedin.com/in/sqlbi/), [Alberto Ferrari](https://www.linkedin.com/in/albertoferrarisqlbi/) and [Kurt Buhler](https://www.linkedin.com/in/kurtbuhler/) | [:material-rss:](https://feeds.feedburner.com/sqlbi_blog){target="_blank"} |
-| [Crossjoin](https://blog.crossjoin.co.uk/) | <span class="type-label blog">Blog</span> | Advanced topics on Power BI, Fabric, and performance tuning by [Chris Webb](https://www.linkedin.com/in/chriswebb6/)| [:material-rss:](https://blog.crossjoin.co.uk/feed/){target="_blank"} |
+| [Crossjoin](https://blog.crossjoin.co.uk/) | <span class="type-label blog">Blog</span> | Advanced topics on Power BI, Fabric, and performance tuning by [Chris Webb](https://www.linkedin.com/in/chriswebb6/) | [:material-rss:](https://blog.crossjoin.co.uk/feed/){target="_blank"} |
 | [FourMoo](https://www.fourmoo.com/blog/) | <span class="type-label blog">Blog</span> | Enterprise architecture, governance, and performance optimization by [Gilbert Quevauvilliers](https://www.linkedin.com/in/fourmoo/) | [:material-rss:](https://www.fourmoo.com/blog/feed/){target="_blank"} |
 | [RADACAD](https://radacad.com/blog/) | <span class="type-label blog">Blog</span> | Deep-dive articles on Power BI architecture, DAX, and data modeling patterns by [Reza Rad](https://www.linkedin.com/in/rezarad/) | [:material-rss:](https://radacad.com/feed){target="_blank"} |
 | [Data Goblins](https://data-goblins.com/articles) | <span class="type-label blog">Blog</span> | Technical deep dives on Power BI internals, performance analysis, and visualizations by [Kurt Buhler](https://www.linkedin.com/in/kurtbuhler/) | [:material-rss:](https://data-goblins.com/power-bi?format=rss){target="_blank"} |
@@ -98,12 +98,12 @@ Resource to help you get up to speed with Power BI.
 | [DAX Guide](https://dax.guide/) | <span class="type-label community">Community</span> | Comprehensive searchable reference for all DAX functions with syntax, parameters, and usage notes | |
 | [DAX.lib](https://dax.lib/) | <span class="type-label community">Community</span> | Library of reusable DAX functions and patterns for common calculations | |
 | [Deneb Guide](https://deneb.guide/) | <span class="type-label community">Community</span> | Complete guide to Deneb custom visual for Vega and Vega-Lite declarative visualizations in Power BI | |
-| [Tabular Editor](https://tabulareditor.com/) | <span class="type-label tool">Tool</span> | Advanced offline modeling, calculation groups and scripting tool |  |
-| [Best Practice Analyzer](https://docs.tabulareditor.com/te2/Best-Practice-Analyzer.html) | <span class="type-label tool">Tool</span> | Automated rule-based validation for semantic models. Built into Tabular Editor 3 |  |
-| [Vertipaq Analyzer](https://github.com/sql-bi/VertiPaq-Analyzer) | <span class="type-label tool">Tool</span> | Inspect model storage, compression, memory usage. Built into DAX Studio and Tabular Editor 3 |  |
-| [PBI Inspector](https://github.com/NatVanG/PBI-Inspector) | <span class="type-label tool">Tool</span> | Automated quality checks and documentation for Power BI reports |  |
-| [Fabric VS Code Extension](https://marketplace.visualstudio.com/items?itemName=GerhardBrueckl.fabricstudio) | <span class="type-label tool">Tool</span> | Manage Fabric workspaces, notebooks, and items directly in VS Code by [Gerhard Brueckl](https://www.linkedin.com/in/gbrueckl/) |  |
-| [Microsoft Fabric for VS Code](https://marketplace.visualstudio.com/items?itemName=fabric.vscode-fabric) | <span class="type-label tool">Tool</span> | Official Microsoft extension for Fabric development in VS Code |  |
-| [Fabric Capacity Metrics App](https://learn.microsoft.com/en-us/fabric/enterprise/capacity-metrics-app) | <span class="type-label tool">Tool</span> | Capacity usage, query wait times, memory consumption monitoring |  |
+| [Tabular Editor](https://tabulareditor.com/) | <span class="type-label tool">Tool</span> | Advanced offline modeling, calculation groups and scripting tool | |
+| [Best Practice Analyzer](https://docs.tabulareditor.com/te2/Best-Practice-Analyzer.html) | <span class="type-label tool">Tool</span> | Automated rule-based validation for semantic models. Built into Tabular Editor 3 | |
+| [Vertipaq Analyzer](https://github.com/sql-bi/VertiPaq-Analyzer) | <span class="type-label tool">Tool</span> | Inspect model storage, compression, memory usage. Built into DAX Studio and Tabular Editor 3 | |
+| [PBI Inspector](https://github.com/NatVanG/PBI-Inspector) | <span class="type-label tool">Tool</span> | Automated quality checks and documentation for Power BI reports | |
+| [Fabric VS Code Extension](https://marketplace.visualstudio.com/items?itemName=GerhardBrueckl.fabricstudio) | <span class="type-label tool">Tool</span> | Manage Fabric workspaces, notebooks, and items directly in VS Code by [Gerhard Brueckl](https://www.linkedin.com/in/gbrueckl/) | |
+| [Microsoft Fabric for VS Code](https://marketplace.visualstudio.com/items?itemName=fabric.vscode-fabric) | <span class="type-label tool">Tool</span> | Official Microsoft extension for Fabric development in VS Code | |
+| [Fabric Capacity Metrics App](https://learn.microsoft.com/en-us/fabric/enterprise/capacity-metrics-app) | <span class="type-label tool">Tool</span> | Capacity usage, query wait times, memory consumption monitoring | |
 | [Microsoft Fabric REST API](https://learn.microsoft.com/en-us/rest/api/fabric/articles/) | <span class="type-label official">Official</span> | Fabric API reference for automation & governance | |
 | [Microsoft Power BI REST API](https://learn.microsoft.com/en-us/rest/api/power-bi/) | <span class="type-label official">Official</span> | Embedding, administration, governance endpoints | |

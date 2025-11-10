@@ -26,7 +26,7 @@ Structured learning paths to take you from beginner to Power BI expert.
 
     Master DAX, data modeling, and advanced report design techniques
 
-    [:octicons-arrow-right-24: Continue Learning](intermediate .md)
+    [:octicons-arrow-right-24: Continue Learning](intermediate.md)
 
 -   :material-trophy:{ .lg .middle } __Advanced Track__
 

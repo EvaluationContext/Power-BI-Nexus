@@ -9,6 +9,8 @@ class RSSCarousel {
     this.container = document.getElementById(containerId);
     this.items = [];
     this.currentPage = 0;
+    this.autoScrollInterval = null;
+    this.autoScrollDelay = 5000; // 5 seconds between auto-scrolls
   }
 
   // Initialize the carousel
@@ -26,6 +28,9 @@ class RSSCarousel {
 
     // Render carousel
     this.render();
+    
+    // Start auto-scroll
+    this.startAutoScroll();
   }
 
   // Fetch RSS items from Firebase Firestore
@@ -180,6 +185,40 @@ class RSSCarousel {
   prev() {
     const prevPage = Math.max(this.currentPage - 1, 0);
     this.showPage(prevPage);
+    this.resetAutoScroll(); // Reset auto-scroll timer on manual navigation
+  }
+
+  // Start auto-scroll
+  startAutoScroll() {
+    // Clear any existing interval
+    this.stopAutoScroll();
+    
+    // Start new interval
+    this.autoScrollInterval = setInterval(() => {
+      const itemsPerPage = 3;
+      const totalPages = Math.ceil(this.items.length / itemsPerPage);
+      
+      // Go to next page, or loop back to first page
+      if (this.currentPage < totalPages - 1) {
+        this.next();
+      } else {
+        this.showPage(0); // Loop back to first page
+      }
+    }, this.autoScrollDelay);
+  }
+
+  // Stop auto-scroll
+  stopAutoScroll() {
+    if (this.autoScrollInterval) {
+      clearInterval(this.autoScrollInterval);
+      this.autoScrollInterval = null;
+    }
+  }
+
+  // Reset auto-scroll (called when user manually navigates)
+  resetAutoScroll() {
+    this.stopAutoScroll();
+    this.startAutoScroll();
   }
 
   // Attach event listeners
@@ -193,7 +232,17 @@ class RSSCarousel {
     // Next button
     const nextBtn = document.getElementById('rss-next');
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => this.next());
+      nextBtn.addEventListener('click', () => {
+        this.next();
+        this.resetAutoScroll(); // Reset auto-scroll timer on manual navigation
+      });
+    }
+
+    // Pause auto-scroll on hover
+    const carousel = this.container.querySelector('.rss-carousel');
+    if (carousel) {
+      carousel.addEventListener('mouseenter', () => this.stopAutoScroll());
+      carousel.addEventListener('mouseleave', () => this.startAutoScroll());
     }
   }
 
