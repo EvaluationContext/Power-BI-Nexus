@@ -14,10 +14,10 @@ table.dataTable {
 .dataTables_wrapper .dataTables_filter input {
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 4px;
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.6rem;
   margin-left: 0.5rem;
-  font-size: 0.8rem;
-  min-width: 300px;
+  font-size: 0.75rem;
+  min-width: 250px;
   background-color: var(--md-default-bg-color);
   color: var(--md-default-fg-color);
 }
@@ -29,8 +29,8 @@ table.dataTable {
 
 /* Remove default DataTables styles that conflict */
 .dataTables_wrapper .dataTables_filter label {
-  font-weight: 400;
-  font-size: 0.85rem;
+  font-weight: 400 !important;
+  font-size: 0.75rem !important;
   color: var(--md-default-fg-color);
 }
 
@@ -68,4 +68,23 @@ table.dataTable tbody tr {
 /* Hover effect */
 table.dataTable tbody tr:hover {
   background-color: var(--md-default-fg-color--lightest);
+}
+
+/* Table content font size */
+table.dataTable {
+  font-size: 0.75rem !important;
+}
+
+table.dataTable thead th {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+}
+
+table.dataTable tbody td {
+  font-size: 0.75rem !important;
+}
+
+/* Pagination font size */
+.dataTables_wrapper .dataTables_paginate {
+  font-size: 0.7rem !important;
 }

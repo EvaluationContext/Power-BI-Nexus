@@ -54,3 +54,21 @@ table th:has(.type-label) {
   border-color: #e37400;
   color: #e37400;
 }
+
+.type-label.free { 
+  background-color: #FFFFFF00;
+  border-color: #137333;
+  color: #137333;
+}
+
+.type-label.paid { 
+  background-color: #FFFFFF00;
+  border-color: #e37400;
+  color: #e37400;
+}
+
+.type-label.course { 
+  background-color: #FFFFFF00;
+  border-color: #7b1fa2;
+  color: #7b1fa2;
+}

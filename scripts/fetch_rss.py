@@ -59,7 +59,7 @@ RSS_FEEDS = [
     },
     {
         'name': 'EvaluationContext',
-        'url': 'https://evaluationcontext.github.io/feed_rss_updated.xml',
+        'url': 'https://evaluationcontext.github.io/feed_rss_created.xml',
         'category': 'Blog'
     },
     {

@@ -87,6 +87,7 @@ class RSSCarousel {
 
     const html = `
       <div class="rss-carousel">
+        <h2 class="rss-carousel-title">Latest from the Community</h2>
         <div class="rss-carousel-track">
           <button class="rss-control-btn rss-nav-prev" id="rss-prev" title="Previous">
             <span class="rss-control-icon">◀</span>
@@ -200,8 +201,15 @@ class RSSCarousel {
   formatDate(dateString) {
     const date = new Date(dateString);
     const now = new Date();
-    const diffMs = now - date;
-    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    
+    // Get start of today (midnight) in local timezone
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    // Get start of the date in question (midnight) in local timezone
+    const dateStart = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    
+    // Calculate difference in days based on calendar days, not 24-hour periods
+    const diffMs = todayStart - dateStart;
+    const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
 
     if (diffDays === 0) return 'Today';
     if (diffDays === 1) return 'Yesterday';
@@ -218,23 +226,37 @@ class RSSCarousel {
   }
 }
 
-// Initialize carousel on homepage
-document.addEventListener('DOMContentLoaded', () => {
-  // Check if carousel widget element exists
+// Initialize carousel
+function initializeCarousel() {
   const carouselWidget = document.getElementById('rss-carousel-widget');
   
-  if (carouselWidget) {
+  if (carouselWidget && !carouselWidget.dataset.initialized) {
     console.log('RSS Carousel widget found, initializing...');
+    carouselWidget.dataset.initialized = 'true';
     
     // Wait for Firebase to be ready
     setTimeout(async () => {
       const carousel = new RSSCarousel('rss-carousel-widget');
       await carousel.init();
     }, 1000);
-  } else {
+  } else if (!carouselWidget) {
     console.log('RSS Carousel widget not found on this page');
+  } else {
+    console.log('RSS Carousel already initialized');
   }
-});
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', initializeCarousel);
+
+// Handle Material theme instant navigation - use the document$ observable
+if (typeof document$ !== 'undefined') {
+  document$.subscribe(function() {
+    console.log('Navigation detected, checking for carousel...');
+    // Small delay to ensure DOM is updated
+    setTimeout(initializeCarousel, 100);
+  });
+}
 
 // Export for module systems
 if (typeof module !== 'undefined' && module.exports) {

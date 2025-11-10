@@ -68,8 +68,6 @@ icon: fontawesome/solid/diagram-project
 
     - Only create additional date dimensions when comparing two independent date contexts (i.e. [Sales Date] and [Order Date])
 
-## References
-
 [1]: https://learn.microsoft.com/en-us/power-bi/guidance/star-schema
 
 [1]: https://www.sqlbi.com/articles/understanding-dax-auto-exist/

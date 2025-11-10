@@ -6,25 +6,22 @@ icon: material/rocket-launch
 
 ## Source Control
 
-- Prefer [PBIP](https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-overview) for source control; store in Git.
+- Prefer [PBIP](https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-overview) for source control, over PBIX or PBIT; store in Git
 
 - Avoid manual edits in Production; enforce deployment pipelines/CICD pipelines
 
-## Tools
+## CI
 
-| Tool | Deployment Technology | Semantic Model Deployment? | pbix/pbit Deployment? | pbip Deployment? |
-|------|----------------------|---------------------------|----------------------|------------------|
-| Pbitools | Power BI APIs / .NET | ✔ | ✔ | ✘ |
-| Tabular Editor | .NET | ✔ | ✘ | ✔ v3.8+ / ✘ v2.x |
-| AMO library | .NET | ✔ | ✘ | ~ |
-| Power BI APIs | Power BI APIs | ✔ | ✘ | |
-| Git Integration | ? | ✔ | ✔ | ✔ |
-| Fabric APIs | Fabric APIs | ✔ | ✔ | ✔ |
-| Semantic Link | Python | ✔ | ✘ | ✘ |
+- [PBI Inspector](https://github.com/NatVanG/PBI-Inspector)
+- [Tabular Editor Best Practice Analyzer](https://docs.tabulareditor.com/common/using-bpa.html?tabs=TE3Rules)
 
-## Quality Assurance
+## CD
 
-- PBI Inspector
-- Tabular Editor Best Practice Analyzer
-- VS Code extension for TMDL
-- Gerhart and Fabric extension
+| Tool | Category | Semantic Model Deployment? | pbix/pbit Deployment? | pbip Deployment? |
+|------|----------|---------------------------|----------------------|------------------|
+| [Pbitools](https://pbi.tools/) | <span class="type-label">REST API</span> <span class="type-label">.NET</span> | :material-check: | :material-check: | :material-close: |
+| [Tabular Editor](https://tabulareditor.com/) | <span class="type-label">.NET</span> | :material-check: | :material-close: | :material-check: v3.8+ </br> :material-close: v2.x |
+| [AMO library](https://learn.microsoft.com/en-us/analysis-services/client-libraries?view=sql-analysis-services-2025) | <span class="type-label">.NET</span> | :material-check: | :material-close: | ~ |
+| [Power BI APIs](https://learn.microsoft.com/en-us/rest/api/power-bi/imports/post-import-in-group) | <span class="type-label">REST API</span> | :material-check: | :material-close: | |
+| [Git Integration](https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-git) | <span class="type-label">Git</span> | :material-check: | :material-check: | :material-check: |
+| [Fabric APIs](https://learn.microsoft.com/en-us/rest/api/fabric/core/items/create-item?tabs=HTTP) | <span class="type-label">REST API</span> | :material-check: | :material-check: | :material-check: |

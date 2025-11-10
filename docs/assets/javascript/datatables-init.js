@@ -1,7 +1,8 @@
-// Initialize DataTables only on the resources page
+// Initialize DataTables only on the resources page and learning tracks
 function initializeDataTables() {
-  // Only run on resources page
-  if (!window.location.pathname.includes('/resources')) {
+  // Only run on resources page or learning tracks
+  if (!window.location.pathname.includes('/resources') && 
+      !window.location.pathname.includes('/learning-tracks')) {
     return;
   }
   
@@ -10,64 +11,118 @@ function initializeDataTables() {
     
     // Initialize DataTables on tables in the resources page
     jQuery('table').each(function() {
+      const tableElement = this;
+      
       // Skip if already initialized
-      if (jQuery.fn.DataTable.isDataTable(this)) {
+      if (jQuery.fn.DataTable.isDataTable(tableElement)) {
+        return;
+      }
+
+      // Verify table has tbody and thead
+      const thead = tableElement.querySelector('thead');
+      const tbody = tableElement.querySelector('tbody');
+      
+      if (!thead || !tbody) {
+        console.log('Skipping table without proper thead/tbody structure');
+        return;
+      }
+
+      // Check if this is the main content table (not in an admonition or code block)
+      const parent = jQuery(tableElement).closest('.admonition, pre, code');
+      if (parent.length > 0) {
+        console.log('Skipping table inside admonition or code block');
         return;
       }
 
       // Add upvote column to table header
-      addUpvoteColumn(this);
+      addUpvoteColumn(tableElement);
       
-      // Initialize the table
-      const table = jQuery(this).DataTable({
-        paging: true,
-        pageLength: 11,
-        lengthChange: false,
-        info: false,
-        ordering: true, // Enable sorting
-        order: [[4, 'desc']], // Sort by Upvotes column (index 4) descending by default
-        columnDefs: [
-          {
-            // Upvotes column - simple numeric sorting
-            targets: 4,
-            type: 'num'
-          }
-        ],
-        language: {
-          search: "Search:",
-          searchPlaceholder: "Type to search..."
+      // Verify column count consistency
+      const theadRow = thead.querySelector('tr');
+      const headerColCount = theadRow ? theadRow.querySelectorAll('th').length : 0;
+      const rows = tbody.querySelectorAll('tr');
+      
+      let hasInconsistentColumns = false;
+      rows.forEach((row, idx) => {
+        const cellCount = row.querySelectorAll('td').length;
+        if (cellCount !== headerColCount) {
+          console.warn(`Row ${idx} has ${cellCount} cells but header has ${headerColCount} columns`);
+          hasInconsistentColumns = true;
         }
       });
-
-      // Refresh table sorting when votes update
-      if (window.upvoteManager) {
-        const originalUpdate = window.upvoteManager.updateVoteCount.bind(window.upvoteManager);
-        window.upvoteManager.updateVoteCount = function(resourceId) {
-          originalUpdate(resourceId);
-          // Update data-order attribute and redraw
-          setTimeout(() => {
-            const voteCount = window.upvoteManager.getVoteCount(resourceId);
-            jQuery(`td[data-vote-count]`).each(function() {
-              const container = jQuery(this).find(`[data-resource-id="${resourceId}"]`);
-              if (container.length) {
-                jQuery(this).attr('data-order', voteCount);
-                jQuery(this).attr('data-vote-count', voteCount);
-              }
-            });
-            table.rows().invalidate().draw(false);
-          }, 100);
-        };
+      
+      if (hasInconsistentColumns) {
+        console.error('Table has inconsistent columns. Skipping DataTables initialization.');
+        return;
       }
+      
+      // Small delay to ensure DOM is fully updated
+      setTimeout(() => {
+        if (jQuery.fn.DataTable.isDataTable(tableElement)) {
+          return; // Already initialized
+        }
+
+        try {
+          // Initialize the table
+          const table = jQuery(tableElement).DataTable({
+            paging: true,
+            pageLength: window.location.pathname.includes('/learning-tracks') ? 25 : 11,
+            lengthChange: false,
+            info: false,
+            ordering: true, // Enable sorting
+            order: [[4, 'desc']], // Sort by Upvotes column (index 4)
+            columnDefs: [
+              {
+                // Upvotes column - simple numeric sorting
+                targets: 4,
+                type: 'num',
+                orderable: true
+              }
+            ],
+            language: {
+              search: "Search:",
+              searchPlaceholder: "Type to search..."
+            }
+          });
+
+          // Refresh table sorting when votes update
+          if (window.upvoteManager) {
+            const originalUpdate = window.upvoteManager.updateVoteCount.bind(window.upvoteManager);
+            window.upvoteManager.updateVoteCount = function(resourceId) {
+              originalUpdate(resourceId);
+              // Update data-order attribute and redraw
+              setTimeout(() => {
+                const voteCount = window.upvoteManager.getVoteCount(resourceId);
+                jQuery(`td[data-vote-count]`).each(function() {
+                  const container = jQuery(this).find(`[data-resource-id="${resourceId}"]`);
+                  if (container.length) {
+                    jQuery(this).attr('data-order', voteCount);
+                    jQuery(this).attr('data-vote-count', voteCount);
+                  }
+                });
+                table.rows().invalidate().draw(false);
+              }, 100);
+            };
+          }
+        } catch (error) {
+          console.error('DataTables initialization error:', error);
+        }
+      }, 100);
     });
   }
-}
-
-// Add upvote column to table
+}// Add upvote column to table
 function addUpvoteColumn(table) {
   const thead = table.querySelector('thead tr');
   const tbody = table.querySelector('tbody');
   
   if (!thead || !tbody) return;
+
+  // Check if upvote column already exists
+  const existingUpvoteHeader = thead.querySelector('th:last-child');
+  if (existingUpvoteHeader && existingUpvoteHeader.textContent.trim() === 'Upvotes') {
+    console.log('Upvotes column already exists, skipping');
+    return;
+  }
 
   // Add header
   const th = document.createElement('th');
