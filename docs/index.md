@@ -9,9 +9,6 @@ hide:
 
 Stop searching in silos. Contribute, learn, and stay current with the Power BI with Power BI Nexus.
 
-<!-- RSS Carousel Widget -->
-<div id="rss-carousel-widget"></div>
-
 <div class="grid cards" markdown>
 
 -   :material-book-check:{ .lg .middle } [__Best Practices__](best-practices)
@@ -33,4 +30,8 @@ Stop searching in silos. Contribute, learn, and stay current with the Power BI w
     Collection of documentation, tools, blogs, and learning materials
 
 </div>
+
+<!-- RSS Carousel Widget -->
+<div id="rss-carousel-widget"></div>
+
 

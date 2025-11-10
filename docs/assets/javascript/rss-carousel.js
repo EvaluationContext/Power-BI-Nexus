@@ -8,9 +8,7 @@ class RSSCarousel {
     this.containerId = containerId;
     this.container = document.getElementById(containerId);
     this.items = [];
-    this.currentIndex = 0;
-    this.autoPlayInterval = null;
-    this.isPlaying = true;
+    this.currentPage = 0;
   }
 
   // Initialize the carousel
@@ -28,9 +26,6 @@ class RSSCarousel {
 
     // Render carousel
     this.render();
-
-    // Start autoplay
-    this.startAutoPlay();
   }
 
   // Fetch RSS items from Firebase Firestore
@@ -92,185 +87,112 @@ class RSSCarousel {
 
     const html = `
       <div class="rss-carousel">
-        <div class="rss-carousel-header">
-          <h3>Latest from the Power BI Community</h3>
-          <div class="rss-carousel-controls">
-            <button class="rss-control-btn" id="rss-play-pause" title="${this.isPlaying ? 'Pause' : 'Play'}">
-              <span class="rss-control-icon">${this.isPlaying ? '⏸' : '▶'}</span>
-            </button>
-            <button class="rss-control-btn" id="rss-prev" title="Previous">
-              <span class="rss-control-icon">◀</span>
-            </button>
-            <button class="rss-control-btn" id="rss-next" title="Next">
-              <span class="rss-control-icon">▶</span>
-            </button>
-          </div>
-        </div>
         <div class="rss-carousel-track">
+          <button class="rss-control-btn rss-nav-prev" id="rss-prev" title="Previous">
+            <span class="rss-control-icon">◀</span>
+          </button>
+          <button class="rss-control-btn rss-nav-next" id="rss-next" title="Next">
+            <span class="rss-control-icon">▶</span>
+          </button>
           <div class="rss-carousel-items" id="rss-carousel-items">
             ${this.renderItems()}
           </div>
-        </div>
-        <div class="rss-carousel-dots" id="rss-carousel-dots">
-          ${this.renderDots()}
         </div>
       </div>
     `;
 
     this.container.innerHTML = html;
     this.attachEventListeners();
-    this.showItem(0);
+    this.currentPage = 0;
+    this.showPage(0);
   }
 
-  // Render carousel items
+  // Render carousel items - 3 per page
   renderItems() {
     return this.items.map((item, index) => `
       <div class="rss-item" data-index="${index}">
         ${item.imageUrl ? `
           <div class="rss-item-image">
-            <img src="${this.escapeHtml(item.imageUrl)}" alt="${this.escapeHtml(item.title)}" loading="lazy">
+            <a href="${this.escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">
+              <img src="${this.escapeHtml(item.imageUrl)}" alt="${this.escapeHtml(item.title)}" loading="lazy">
+            </a>
           </div>
         ` : ''}
         <div class="rss-item-content">
-          <span class="rss-item-category ${item.category.toLowerCase()}">${item.category}</span>
           <h4 class="rss-item-title">
             <a href="${this.escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">
               ${this.escapeHtml(item.title)}
             </a>
           </h4>
-          <p class="rss-item-snippet">${this.escapeHtml(item.contentSnippet)}</p>
+          ${item.contentSnippet ? `<p class="rss-item-snippet">${this.escapeHtml(item.contentSnippet)}</p>` : ''}
           <div class="rss-item-meta">
             <span class="rss-item-source">${this.escapeHtml(item.source)}</span>
             <span class="rss-item-date">${this.formatDate(item.pubDate)}</span>
           </div>
+          <span class="rss-item-category ${item.category.toLowerCase()}">${item.category}</span>
         </div>
       </div>
     `).join('');
   }
 
-  // Render navigation dots
-  renderDots() {
-    return this.items.map((_, index) => `
-      <button class="rss-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></button>
-    `).join('');
-  }
-
-  // Show specific item
-  showItem(index) {
+  // Show specific page (3 items per page)
+  showPage(pageIndex) {
+    const itemsPerPage = 3;
     const items = this.container.querySelectorAll('.rss-item');
-    const dots = this.container.querySelectorAll('.rss-dot');
+    const totalPages = Math.ceil(this.items.length / itemsPerPage);
+    
+    // Ensure pageIndex is within bounds
+    pageIndex = Math.max(0, Math.min(pageIndex, totalPages - 1));
+    this.currentPage = pageIndex;
+    
+    const startIndex = pageIndex * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
 
     items.forEach((item, i) => {
-      item.classList.toggle('active', i === index);
+      item.classList.toggle('active', i >= startIndex && i < endIndex);
     });
-
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === index);
-    });
-
-    this.currentIndex = index;
-  }
-
-  // Navigate to next item
-  next() {
-    const nextIndex = (this.currentIndex + 1) % this.items.length;
-    this.showItem(nextIndex);
-  }
-
-  // Navigate to previous item
-  prev() {
-    const prevIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
-    this.showItem(prevIndex);
-  }
-
-  // Toggle autoplay
-  toggleAutoPlay() {
-    if (this.isPlaying) {
-      this.stopAutoPlay();
-    } else {
-      this.startAutoPlay();
-    }
-  }
-
-  // Start autoplay
-  startAutoPlay() {
-    this.isPlaying = true;
-    this.autoPlayInterval = setInterval(() => this.next(), 5000); // 5 seconds
     
-    const playPauseBtn = document.getElementById('rss-play-pause');
-    if (playPauseBtn) {
-      playPauseBtn.querySelector('.rss-control-icon').textContent = '⏸';
-      playPauseBtn.title = 'Pause';
+    // Update navigation button states
+    const prevBtn = document.getElementById('rss-prev');
+    const nextBtn = document.getElementById('rss-next');
+    
+    if (prevBtn) {
+      prevBtn.disabled = pageIndex === 0;
+      prevBtn.style.opacity = pageIndex === 0 ? '0.3' : '1';
+    }
+    
+    if (nextBtn) {
+      nextBtn.disabled = pageIndex === totalPages - 1;
+      nextBtn.style.opacity = pageIndex === totalPages - 1 ? '0.3' : '1';
     }
   }
 
-  // Stop autoplay
-  stopAutoPlay() {
-    this.isPlaying = false;
-    if (this.autoPlayInterval) {
-      clearInterval(this.autoPlayInterval);
-      this.autoPlayInterval = null;
-    }
+  // Navigate to next page
+  next() {
+    const itemsPerPage = 3;
+    const totalPages = Math.ceil(this.items.length / itemsPerPage);
+    const nextPage = Math.min(this.currentPage + 1, totalPages - 1);
+    this.showPage(nextPage);
+  }
 
-    const playPauseBtn = document.getElementById('rss-play-pause');
-    if (playPauseBtn) {
-      playPauseBtn.querySelector('.rss-control-icon').textContent = '▶';
-      playPauseBtn.title = 'Play';
-    }
+  // Navigate to previous page
+  prev() {
+    const prevPage = Math.max(this.currentPage - 1, 0);
+    this.showPage(prevPage);
   }
 
   // Attach event listeners
   attachEventListeners() {
-    // Play/Pause button
-    const playPauseBtn = document.getElementById('rss-play-pause');
-    if (playPauseBtn) {
-      playPauseBtn.addEventListener('click', () => this.toggleAutoPlay());
-    }
-
     // Previous button
     const prevBtn = document.getElementById('rss-prev');
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        this.stopAutoPlay();
-        this.prev();
-      });
+      prevBtn.addEventListener('click', () => this.prev());
     }
 
     // Next button
     const nextBtn = document.getElementById('rss-next');
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        this.stopAutoPlay();
-        this.next();
-      });
-    }
-
-    // Dots navigation
-    const dots = this.container.querySelectorAll('.rss-dot');
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        this.stopAutoPlay();
-        const index = parseInt(dot.dataset.index);
-        this.showItem(index);
-      });
-    });
-
-    // Pause on hover
-    const carousel = this.container.querySelector('.rss-carousel');
-    if (carousel) {
-      carousel.addEventListener('mouseenter', () => {
-        if (this.isPlaying) {
-          this.stopAutoPlay();
-          this.wasPlayingBeforeHover = true;
-        }
-      });
-
-      carousel.addEventListener('mouseleave', () => {
-        if (this.wasPlayingBeforeHover) {
-          this.startAutoPlay();
-          this.wasPlayingBeforeHover = false;
-        }
-      });
+      nextBtn.addEventListener('click', () => this.next());
     }
   }
 
@@ -298,13 +220,19 @@ class RSSCarousel {
 
 // Initialize carousel on homepage
 document.addEventListener('DOMContentLoaded', () => {
-  // Only initialize on homepage
-  if (window.location.pathname === '/' || window.location.pathname.endsWith('/index.html')) {
+  // Check if carousel widget element exists
+  const carouselWidget = document.getElementById('rss-carousel-widget');
+  
+  if (carouselWidget) {
+    console.log('RSS Carousel widget found, initializing...');
+    
     // Wait for Firebase to be ready
     setTimeout(async () => {
       const carousel = new RSSCarousel('rss-carousel-widget');
       await carousel.init();
     }, 1000);
+  } else {
+    console.log('RSS Carousel widget not found on this page');
   }
 });
 

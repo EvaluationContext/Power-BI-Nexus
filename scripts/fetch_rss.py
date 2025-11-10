@@ -122,9 +122,9 @@ def fetch_feed(feed_info):
             # Get content snippet
             content_snippet = ''
             if hasattr(entry, 'summary'):
-                content_snippet = entry.summary[:200]
+                content_snippet = entry.summary[:500]  # Get more content for image extraction
             elif hasattr(entry, 'description'):
-                content_snippet = entry.description[:200]
+                content_snippet = entry.description[:500]
             
             # Get author
             author = feed_info['name']
@@ -133,23 +133,50 @@ def fetch_feed(feed_info):
             elif hasattr(entry, 'creator'):
                 author = entry.creator
             
-            # Get image/thumbnail
+            # Get image/thumbnail - check content first, then media fields
             image_url = ''
-            if hasattr(entry, 'media_thumbnail') and entry.media_thumbnail:
-                image_url = entry.media_thumbnail[0].get('url', '')
-            elif hasattr(entry, 'media_content') and entry.media_content:
-                image_url = entry.media_content[0].get('url', '')
-            elif hasattr(entry, 'enclosures') and entry.enclosures:
-                for enclosure in entry.enclosures:
-                    if enclosure.get('type', '').startswith('image/'):
-                        image_url = enclosure.get('href', '')
-                        break
+            
+            # Try to extract image from HTML content (summary or description)
+            import re
+            if not image_url and hasattr(entry, 'summary') and '<img' in entry.summary:
+                img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', entry.summary)
+                if img_match:
+                    image_url = img_match.group(1)
+            
+            if not image_url and hasattr(entry, 'description') and '<img' in entry.description:
+                img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', entry.description)
+                if img_match:
+                    image_url = img_match.group(1)
+            
+            # Try content field as well
+            if not image_url and hasattr(entry, 'content') and entry.content:
+                content_html = entry.content[0].get('value', '')
+                if '<img' in content_html:
+                    img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', content_html)
+                    if img_match:
+                        image_url = img_match.group(1)
+            
+            # Fallback to media fields if no image found in content
+            if not image_url:
+                if hasattr(entry, 'media_thumbnail') and entry.media_thumbnail:
+                    image_url = entry.media_thumbnail[0].get('url', '')
+                elif hasattr(entry, 'media_content') and entry.media_content:
+                    image_url = entry.media_content[0].get('url', '')
+                elif hasattr(entry, 'enclosures') and entry.enclosures:
+                    for enclosure in entry.enclosures:
+                        if enclosure.get('type', '').startswith('image/'):
+                            image_url = enclosure.get('href', '')
+                            break
+            
+            # Strip HTML tags from content snippet for clean text display
+            content_snippet_clean = re.sub(r'<[^>]+>', '', content_snippet)
+            content_snippet_clean = content_snippet_clean.strip()
             
             items.append({
                 'title': entry.get('title', 'Untitled'),
                 'link': entry.get('link', ''),
                 'pubDate': pub_date.isoformat(),
-                'contentSnippet': content_snippet,
+                'contentSnippet': content_snippet_clean,
                 'author': author,
                 'source': feed_info['name'],
                 'category': feed_info['category'],

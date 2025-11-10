@@ -6,7 +6,7 @@ site_description = "Community-driven hub for all things Power BI. Curated best p
 
 site_author = "Jake Duddy"
 
-site_url = "https://www.evaluationcontext.github.io/Power-BI-Nexus"
+site_url = "https://evaluationcontext.github.io/Power-BI-Nexus"
 
 repo_url = "https://github.com/EvaluationContext/Power-BI-Nexus"
 
