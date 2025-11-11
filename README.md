@@ -1,100 +1,37 @@
-# Power-BI-Nexus
+# Power BI Nexus
 
-A static documentation site built with [Zensical](https://zensical.org/).
+A community-curated hub for Power BI best practices, resources, and learning tracks.
 
-## Getting Started
+## About
 
-### Prerequisites
+Power BI Nexus solves the fragmentation problem in Power BI learning by curating and maintaining pointers to the best resources across the web. Unlike static blog posts frozen in time, our content evolves with the Power BI ecosystem through community contributions.
 
-- Docker (for devcontainer)
-- Or Python 3.x with pip
+## Features
 
-### Development with Devcontainer
+- **Best Practices Library** - Curated guidance on data modeling, DAX, security, deployment, and more
+- **Learning Tracks** - Structured paths from beginner to advanced
+- **Curated Resources** - Community-voted links to blogs, tools, videos, and documentation
+- **Unified RSS Feed** - Stay current with one subscription covering 10+ authoritative sources
+- **Community-Driven** - Open source with clear governance and contribution guidelines
 
-1. Open this project in VS Code
-2. When prompted, click "Reopen in Container" (or use Command Palette: "Dev Containers: Reopen in Container")
-3. Wait for the container to build and dependencies to install
+## Contributing
 
-### Initialize Your Site
+We welcome contributions through structured issue templates:
 
-Once in the devcontainer, create your Zensical site:
+- **[Suggest a Resource](https://github.com/EvaluationContext/Power-BI-Nexus/issues/new?template=suggest-resource.yml)** - Add a new blog, tool, video, or documentation
+- **[Improve Best Practices](https://github.com/EvaluationContext/Power-BI-Nexus/issues/new?template=improve-best-practices.yml)** - Update or enhance best practice guidance
+- **[Report an Issue](https://github.com/EvaluationContext/Power-BI-Nexus/issues/new?template=report-issue.yml)** - Fix typos, broken links, or outdated content
 
-```bash
-zensical new .
-```
+Maintainers review all issues and implement approved changes via pull request.
 
-This creates:
-- `docs/` - Your documentation content (Markdown files)
-- `zensical.toml` - Configuration file
+Read our [Contributing Guidelines](CONTRIBUTING.md) for details on content inclusion criteria, review process, and code of conduct.
 
-### Preview Your Site
+## Governance
 
-Start the development server:
+Power BI Nexus maintains quality through structured community governance:
 
-```bash
-zensical serve
-```
+- **Maintainer Review** - All contributions reviewed against clear criteria
+- **Transparent Decisions** - Documented reasoning for all acceptance/rejection decisions  
+- **Quality Over Quantity** - Curated for value, not completeness
 
-Then open your browser to http://localhost:8000
-
-The site will automatically rebuild when you make changes to your documentation.
-
-### Build Your Site
-
-To build the static site for deployment:
-
-```bash
-zensical build
-```
-
-The static site will be generated in the `site/` directory.
-
-## Configuration
-
-Edit `zensical.toml` to customize your site. At minimum, you should set:
-
-```toml
-[project]
-site_name = "Your Site Name"
-site_url = "https://your-domain.com"
-```
-
-### Git Contributors Setup
-
-The site displays contributor avatars at the bottom of each page using the `mkdocs-git-committers-plugin-2`. To enable GitHub avatars and links:
-
-1. **Create a GitHub Personal Access Token:**
-   - Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
-   - Generate a new token with `public_repo` scope (or `repo` for private repos)
-   - Copy the token
-
-2. **Set the token as an environment variable:**
-   
-   **In the devcontainer (Linux):**
-   ```bash
-   export MKDOCS_GIT_COMMITTERS_APIKEY=your_github_token_here
-   ```
-   
-   **On Windows (PowerShell):**
-   ```powershell
-   $env:MKDOCS_GIT_COMMITTERS_APIKEY="your_github_token_here"
-   ```
-   
-   **For persistent setup, add to your shell profile:**
-   - Linux/Mac: Add to `~/.bashrc` or `~/.zshrc`
-   - Windows: Set as a system environment variable
-
-3. **Without the token:** The plugin will still work but will be rate-limited by GitHub's API and won't show contributor avatars.
-
-The contributors section appears automatically at the bottom of each page, showing circular avatars with GitHub usernames and links.
-
-## Documentation
-
-- [Zensical Documentation](https://zensical.org/docs/)
-- [Create Your Site](https://zensical.org/docs/create-your-site/)
-- [Customization](https://zensical.org/docs/customization/)
-- [Publishing](https://zensical.org/docs/publish-your-site/)
-
-## License
-
-See [LICENSE](LICENSE) file for details.
+See [Maintainer Guide](.github/MAINTAINERS.md) for details.

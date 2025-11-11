@@ -44,11 +44,18 @@ nav = [
     { "Certifications" = "learning-tracks/certifications.md" },
   ]},
   { "Resources" = "resources.md" },
-  { "Contribute" = "contribute.md" },
+  { "Contribute" = [
+    { "Overview" = "contribute/index.md" },
+    { "Curation Philosophy" = "contribute/curation-philosophy.md" },
+    { "Creating Good Issues" = "contribute/creating-good-issues.md" },
+    { "Review Process" = "contribute/review-process.md" },
+    { "Code of Conduct" = "contribute/code-of-conduct.md" },
+  ]},
 ]
 
 # Read more: https://zensical.org/docs/customization/#additional-css
 extra_css = [
+  "assets/stylesheets/buttons.css",
   "assets/stylesheets/pill.css",
   "https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css",
   "assets/stylesheets/datatables-custom.css",
@@ -75,9 +82,9 @@ extra_javascript = [
 # Read more:
 # - https://zensical.org/docs/customization/#extending-the-theme
 #
-#custom_dir = "overrides"
+# custom_dir = "overrides"
 
-#favicon = "assets/images/favicon.png"
+favicon = "fontawesome/solid/circle-nodes"
 
 language = "en"
 
@@ -165,16 +172,8 @@ toggle.name = "Switch to system preference"
 #code = "Jetbrains Mono"
 
 [project.theme.icon]
-logo = "material/hub-outline"
+logo = "fontawesome/solid/circle-nodes"
 repo = "fontawesome/brands/github"
-
-# ----------------------------------------------------------------------------
-# Plugins - MkDocs compatibility for git contributors
-# ----------------------------------------------------------------------------
-[[project.plugins.git-committers]]
-enabled = true
-repository = "EvaluationContext/Power-BI-Nexus"
-branch = "main"
 
 # ----------------------------------------------------------------------------
 # The "extra" section contains miscellaneous settings.

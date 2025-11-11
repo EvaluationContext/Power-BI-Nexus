@@ -1,0 +1,42 @@
+# CODEOWNERS file for Power BI Nexus
+# This file defines who will be automatically requested for review when files are changed
+
+# Default owner for everything in the repo
+# This person will be requested for review as a fallback
+* @EvaluationContext
+
+# Documentation and general content
+/README.md @EvaluationContext
+/CONTRIBUTING.md @EvaluationContext
+/docs/index.md @EvaluationContext
+/docs/contribute.md @EvaluationContext
+
+# Best Practices - Assign to subject matter experts when available
+/docs/best-practices/ @EvaluationContext
+/docs/best-practices/dax.md @EvaluationContext
+/docs/best-practices/data-modeling.md @EvaluationContext
+/docs/best-practices/storage-modes/ @EvaluationContext
+/docs/best-practices/security.md @EvaluationContext
+/docs/best-practices/deployment.md @EvaluationContext
+/docs/best-practices/tools.md @EvaluationContext
+/docs/best-practices/visualization.md @EvaluationContext
+/docs/best-practices/data-preparation.md @EvaluationContext
+
+# Learning Tracks
+/docs/learning-tracks/ @EvaluationContext
+
+# Resources - High-impact changes, require careful review
+/docs/resources.md @EvaluationContext
+
+# Configuration files - Requires lead curator approval
+/zensical.toml @EvaluationContext
+/.github/ @EvaluationContext
+
+# Scripts and automation
+/scripts/ @EvaluationContext
+
+# Add additional maintainers as they join:
+# Example when you have section maintainers:
+# /docs/best-practices/dax.md @EvaluationContext @dax-expert-username
+# /docs/best-practices/tools.md @EvaluationContext @tools-expert-username
+# /docs/learning-tracks/ @EvaluationContext @learning-expert-username

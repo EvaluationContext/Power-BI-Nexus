@@ -1,0 +1,77 @@
+name: Stale Issue Handler
+
+on:
+  schedule:
+    # Run daily at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mark stale issues and PRs
+        uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # Issues
+          stale-issue-message: |
+            👋 This issue has been automatically marked as stale because it hasn't had recent activity.
+            
+            **For contributors:** If you're still interested in this, please provide the requested information or comment to keep it open.
+            
+            **For maintainers:** Review and either close, request more info, or remove the stale label to keep active.
+            
+            This issue will be closed in 7 days if no further activity occurs.
+          close-issue-message: |
+            🔒 This issue has been automatically closed due to inactivity.
+            
+            If you believe this was closed in error, or you'd like to revisit this, please:
+            1. Provide the additional information that was requested
+            2. Comment on this issue to reopen it
+            
+            Thank you for your contribution!
+          
+          days-before-issue-stale: 30
+          days-before-issue-close: 7
+          stale-issue-label: 'stale'
+          exempt-issue-labels: 'needs-review,approved,on-hold,pinned'
+          
+          # Only mark as stale if it has these labels
+          only-labels: 'needs-more-info'
+          
+          # Pull Requests
+          stale-pr-message: |
+            👋 This pull request has been automatically marked as stale because it hasn't had recent activity.
+            
+            Please:
+            - Respond to review comments
+            - Rebase if there are conflicts
+            - Ensure CI checks pass
+            
+            This PR will be closed in 14 days if no further activity occurs.
+          close-pr-message: |
+            🔒 This pull request has been automatically closed due to inactivity.
+            
+            If you'd like to revisit this:
+            1. Address the review feedback
+            2. Rebase on main
+            3. Comment to reopen
+            
+            Thank you for your contribution!
+          
+          days-before-pr-stale: 30
+          days-before-pr-close: 14
+          stale-pr-label: 'stale'
+          exempt-pr-labels: 'needs-review,approved,on-hold,pinned'
+          
+          # Operations per run
+          operations-per-run: 100
+          
+          # Don't process issues/PRs created in the last X days
+          exempt-all-milestones: true

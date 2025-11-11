@@ -1,0 +1,22 @@
+# PR size labeling
+size/xs:
+  - '**/*.md'
+
+# Content type labeling
+resource-suggestion:
+  - 'docs/resources.md'
+
+best-practice:
+  - 'docs/best-practices/**/*.md'
+
+learning-track:
+  - 'docs/learning-tracks/**/*.md'
+
+documentation:
+  - 'README.md'
+  - 'CONTRIBUTING.md'
+  - 'docs/contribute.md'
+
+configuration:
+  - 'zensical.toml'
+  - '.github/**'

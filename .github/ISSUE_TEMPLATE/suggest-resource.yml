@@ -1,0 +1,140 @@
+name: Suggest a Resource
+description: Suggest a blog, tool, video, or documentation to add to Power BI Nexus
+title: "[Resource]: "
+labels: ["resource-suggestion", "needs-review"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a resource! Please provide as much detail as possible to help us evaluate it.
+        
+        **Before submitting:**
+        - Check if the resource is already listed in [Resources](https://evaluationcontext.github.io/Power-BI-Nexus/resources/)
+        - Verify it's been updated recently (within 12 months for non-foundational content)
+        - Ensure it provides unique value
+
+  - type: dropdown
+    id: resource-type
+    attributes:
+      label: Resource Type
+      description: What type of resource is this?
+      options:
+        - Blog/Article
+        - Video/YouTube Channel
+        - Tool/Software
+        - Documentation
+        - Community/Forum
+        - Course/Training
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Resource URL
+      description: Direct link to the resource
+      placeholder: https://example.com/resource
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Resource Title/Name
+      description: The name of the blog, tool, video series, etc.
+      placeholder: e.g., "SQLBI Blog" or "DAX Studio"
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Author/Creator
+      description: Who created or maintains this resource?
+      placeholder: e.g., "Marco Russo and Alberto Ferrari" or "Microsoft"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What does this resource cover? (This may be used on the site if accepted)
+      placeholder: Brief description of what makes this resource valuable
+    validations:
+      required: true
+
+  - type: textarea
+    id: value
+    attributes:
+      label: Why Should We Include This?
+      description: What unique value does it provide? What gap does it fill?
+      placeholder: |
+        - What makes this resource stand out?
+        - What gap does it fill in our current resources?
+        - Who would benefit from this?
+    validations:
+      required: true
+
+  - type: textarea
+    id: different
+    attributes:
+      label: How Is It Different?
+      description: How does this differ from resources we already have?
+      placeholder: Compare to existing resources in our collection
+    validations:
+      required: true
+
+  - type: input
+    id: last-updated
+    attributes:
+      label: Last Updated
+      description: When was this resource last updated?
+      placeholder: e.g., "November 2025" or "Active - updated weekly"
+    validations:
+      required: true
+
+  - type: input
+    id: rss-feed
+    attributes:
+      label: RSS Feed URL (if applicable)
+      description: Does this resource have an RSS feed?
+      placeholder: https://example.com/feed
+
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Your Relationship to This Content
+      description: Be transparent - we evaluate based on merit, not who suggests it
+      options:
+        - I am the author/creator
+        - I work for the company/organization
+        - I am a user/fan of this content
+        - No relationship
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Anything else we should know?
+      placeholder: Any other relevant information
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm you've checked these items
+      options:
+        - label: I have checked that this resource is not already listed
+          required: true
+        - label: The resource has been updated within the last 12 months (or is foundational content)
+          required: true
+        - label: I have disclosed my relationship to this content
+          required: true
+        - label: The resource provides unique value not covered elsewhere
+          required: true

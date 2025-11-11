@@ -1,0 +1,66 @@
+name: Monthly Link Check
+
+on:
+  schedule:
+    # Run on the 1st of every month at 00:00 UTC
+    - cron: '0 0 1 * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-links:
+    name: Check All Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check all links in documentation
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress 'docs/**/*.md' 'README.md' 'CONTRIBUTING.md'
+          fail: false
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Create issue if broken links found
+        if: steps.lychee.outputs.exit_code != 0
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const lycheeOutput = fs.readFileSync('./lychee/out.md', 'utf8');
+            
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🔗 Monthly Link Check - Broken Links Found',
+              body: `## Broken Links Report\n\nThe monthly link check found broken links:\n\n${lycheeOutput}\n\n---\n*This issue was automatically created by the monthly link check workflow.*`,
+              labels: ['maintenance', 'broken-link', 'automated']
+            });
+
+  check-rss-freshness:
+    name: Check RSS Feed Freshness
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install feedparser requests
+
+      - name: Check RSS feed activity
+        run: |
+          python scripts/check_rss_freshness.py
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: rss-freshness-report
+          path: rss_freshness_report.md
+          retention-days: 30

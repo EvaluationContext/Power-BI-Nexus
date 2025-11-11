@@ -1,0 +1,65 @@
+name: Report an Issue
+description: Report a bug, broken link, typo, or other problem
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us maintain quality! Please describe the issue you found.
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What kind of issue is this?
+      options:
+        - Broken link
+        - Typo/Grammar
+        - Outdated information
+        - Incorrect information
+        - Formatting problem
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: page-url
+    attributes:
+      label: Page URL
+      description: Which page has the issue?
+      placeholder: https://evaluationcontext.github.io/Power-BI-Nexus/best-practices/dax/
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue Description
+      description: What's wrong?
+      placeholder: Clearly describe the issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior/Content
+      description: What should it say or do instead?
+      placeholder: What's the correct information or behavior?
+
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested Fix (optional)
+      description: If you know how to fix it, let us know!
+      placeholder: Your proposed fix or correction
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Screenshots, links, or other helpful information
+      placeholder: Add any other context about the problem here

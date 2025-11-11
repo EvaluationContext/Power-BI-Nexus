@@ -1,0 +1,109 @@
+name: Improve Best Practices
+description: Suggest an improvement or addition to our best practices documentation
+title: "[Best Practice]: "
+labels: ["best-practice", "needs-review"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our best practices! We value accuracy and want to ensure our guidance reflects current Power BI capabilities.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Best Practice Category
+      description: Which area does this relate to?
+      options:
+        - Data Modeling
+        - DAX
+        - Storage Modes
+        - Data Preparation
+        - Security
+        - Tools
+        - Deployment & Lifecycle
+        - Visualization & UX
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Type of Change
+      description: What kind of improvement is this?
+      options:
+        - Add new best practice
+        - Update existing best practice
+        - Remove outdated best practice
+        - Fix error/inaccuracy
+        - Improve clarity/wording
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-state
+    attributes:
+      label: Current State (if updating/fixing)
+      description: What does the current documentation say? (Quote or link to the section)
+      placeholder: Quote the current text or describe what exists now
+
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed Change
+      description: What should we change, add, or remove?
+      placeholder: Provide the new/updated text or description
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this change necessary? What has changed in Power BI or best practices?
+      placeholder: |
+        - What makes this a best practice?
+        - Has Power BI's functionality changed?
+        - Is current guidance outdated or incorrect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources/References
+      description: Link to authoritative sources that support this change
+      placeholder: |
+        - Microsoft documentation: [URL]
+        - SQLBI article: [URL]
+        - Community expert post: [URL]
+    validations:
+      required: true
+
+  - type: input
+    id: affected-versions
+    attributes:
+      label: Power BI Versions Affected
+      description: Does this apply to all versions or specific ones?
+      placeholder: e.g., "All versions" or "Power BI Desktop 2024+, Fabric only"
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Anything else we should know?
+      placeholder: Any other relevant information
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have provided authoritative sources for this change
+          required: true
+        - label: This reflects current Power BI capabilities and recommendations
+          required: true
+        - label: I have clearly explained the rationale
+          required: true
