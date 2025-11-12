@@ -1,26 +1,81 @@
 // Upvote system for resources table
 // Uses Firebase Realtime Database for storing votes
-// Implements session-based voting restrictions (1 vote per resource per session)
+// Implements IP-based voting restrictions (1 vote per resource per IP address)
 
 class UpvoteManager {
   constructor() {
     this.database = null;
     this.votesRef = null;
-    this.sessionKey = this.getOrCreateSessionKey();
+    this.ipHash = null;
     this.votedResources = this.loadVotedResources();
     this.voteCounts = {};
     this.initialized = false;
   }
 
-  // Generate or retrieve a unique session key
-  getOrCreateSessionKey() {
-    let sessionKey = sessionStorage.getItem('upvote_session_key');
-    if (!sessionKey) {
-      // Create a unique session key combining timestamp and random string
-      sessionKey = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      sessionStorage.setItem('upvote_session_key', sessionKey);
+  // Get IP address hash for voting
+  async getIpHash() {
+    if (this.ipHash) {
+      return this.ipHash;
     }
-    return sessionKey;
+
+    // Check if we have a cached IP hash in localStorage
+    const cachedHash = localStorage.getItem('upvote_ip_hash');
+    const cacheTime = localStorage.getItem('upvote_ip_hash_time');
+    const now = Date.now();
+    
+    // Use cached hash if less than 24 hours old
+    if (cachedHash && cacheTime && (now - parseInt(cacheTime) < 24 * 60 * 60 * 1000)) {
+      this.ipHash = cachedHash;
+      return this.ipHash;
+    }
+
+    try {
+      // Use ipify API to get IP address
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      const ip = data.ip;
+      
+      // Create a hash of the IP address (simple hash for privacy)
+      const hash = await this.hashString(ip);
+      this.ipHash = hash;
+      
+      // Cache the hash
+      localStorage.setItem('upvote_ip_hash', hash);
+      localStorage.setItem('upvote_ip_hash_time', now.toString());
+      
+      return hash;
+    } catch (error) {
+      console.warn('Could not fetch IP address, using fallback:', error);
+      // Fallback to browser fingerprint-based hash
+      const fallback = await this.getFallbackHash();
+      this.ipHash = fallback;
+      return fallback;
+    }
+  }
+
+  // Create hash from string
+  async hashString(str) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex.substring(0, 32); // Use first 32 chars
+  }
+
+  // Fallback hash based on browser fingerprint
+  async getFallbackHash() {
+    const fingerprint = [
+      navigator.userAgent,
+      navigator.language,
+      screen.width,
+      screen.height,
+      screen.colorDepth,
+      new Date().getTimezoneOffset(),
+      navigator.hardwareConcurrency || 0
+    ].join('|');
+    
+    return await this.hashString(fingerprint);
   }
 
   // Load voted resources from session storage
@@ -49,6 +104,12 @@ class UpvoteManager {
     this.votesRef = this.database.ref('resource_votes');
     this.initialized = true;
 
+    // Get IP hash for voting
+    await this.getIpHash();
+
+    // Check which resources this IP has voted for
+    await this.loadIpVotes();
+
     // Listen for vote changes in real-time
     this.votesRef.on('value', (snapshot) => {
       const data = snapshot.val();
@@ -59,6 +120,29 @@ class UpvoteManager {
     });
 
     return true;
+  }
+
+  // Load votes for this IP address
+  async loadIpVotes() {
+    if (!this.ipHash) return;
+
+    try {
+      const snapshot = await this.votesRef.once('value');
+      const allVotes = snapshot.val() || {};
+      
+      // Check each resource for votes from this IP
+      Object.keys(allVotes).forEach(resourceId => {
+        const votes = allVotes[resourceId];
+        if (votes && votes[this.ipHash]) {
+          this.votedResources[resourceId] = true;
+        }
+      });
+
+      // Save to session storage for faster lookups
+      this.saveVotedResources();
+    } catch (error) {
+      console.error('Error loading IP votes:', error);
+    }
   }
 
   // Create a unique resource ID from the resource name
@@ -90,20 +174,38 @@ class UpvoteManager {
       return false;
     }
 
+    if (!this.ipHash) {
+      console.error('IP hash not available');
+      return false;
+    }
+
     if (this.hasVoted(resourceId)) {
-      console.log('Already voted for this resource');
+      console.log('Already voted for this resource from this IP');
       return false;
     }
 
     try {
-      // Add vote to Firebase
-      const voteRef = this.votesRef.child(resourceId).child(this.sessionKey);
+      // Check if this IP has already voted (double-check on server side)
+      const existingVote = await this.votesRef
+        .child(resourceId)
+        .child(this.ipHash)
+        .once('value');
+      
+      if (existingVote.exists()) {
+        console.log('Vote already exists in database');
+        this.votedResources[resourceId] = true;
+        this.saveVotedResources();
+        return false;
+      }
+
+      // Add vote to Firebase using IP hash as key
+      const voteRef = this.votesRef.child(resourceId).child(this.ipHash);
       await voteRef.set({
         timestamp: firebase.database.ServerValue.TIMESTAMP,
         resourceName: resourceName
       });
 
-      // Mark as voted in session storage
+      // Mark as voted in local storage
       this.votedResources[resourceId] = true;
       this.saveVotedResources();
 
