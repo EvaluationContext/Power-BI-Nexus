@@ -71,12 +71,3 @@ Before contributing, please familiarize yourself with our processes:
     [:octicons-arrow-right-24: Read our standards](code-of-conduct.md)
 
 </div>
-
-## Need Help?
-
-- **Full Guidelines**: [CONTRIBUTING.md](https://github.com/EvaluationContext/Power-BI-Nexus/blob/main/CONTRIBUTING.md)
-- **All Issues**: [Issue Tracker](https://github.com/EvaluationContext/Power-BI-Nexus/issues)
-
-## Thank You! 
-
-Every contribution helps us maintain Power BI Nexus as a trusted, evolving resource for the community. We appreciate your time and expertise!

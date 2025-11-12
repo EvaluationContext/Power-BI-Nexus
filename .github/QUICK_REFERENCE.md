@@ -248,7 +248,7 @@ We've been impressed with your contributions to Power BI Nexus and would like to
 - Mostly asynchronous
 
 **Next Steps:**
-1. Read the [Maintainer Guide](.github/MAINTAINERS.md)
+1. Review our [Contributing Guidelines](../CONTRIBUTING.md)
 2. Let me know if you have questions
 3. If interested, I'll add you to the team
 
@@ -283,7 +283,6 @@ Before approving best practice change, verify:
 
 ### In This Repo
 - [Contributing Guidelines](../CONTRIBUTING.md)
-- [Maintainer Guide](../.github/MAINTAINERS.md)
 - [Code Owners](../.github/CODEOWNERS)
 - [Governance Setup](../GOVERNANCE_SETUP.md)
 

@@ -77,7 +77,6 @@ body:
       description: Link to authoritative sources that support this change
       placeholder: |
         - Microsoft documentation: [URL]
-        - SQLBI article: [URL]
         - Community expert post: [URL]
     validations:
       required: true

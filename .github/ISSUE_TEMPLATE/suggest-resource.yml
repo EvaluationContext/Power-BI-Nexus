@@ -45,7 +45,7 @@ body:
     attributes:
       label: Resource Title/Name
       description: The name of the blog, tool, video series, etc.
-      placeholder: e.g., "SQLBI Blog" or "DAX Studio"
+      placeholder: e.g., "EvaluationContext Blog" or "DAX Studio"
     validations:
       required: true
 
@@ -54,7 +54,7 @@ body:
     attributes:
       label: Author/Creator
       description: Who created or maintains this resource?
-      placeholder: e.g., "Marco Russo and Alberto Ferrari" or "Microsoft"
+      placeholder: e.g., "Jake Duddy" or "Microsoft"
     validations:
       required: true
 

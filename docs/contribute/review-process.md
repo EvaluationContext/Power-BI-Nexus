@@ -20,16 +20,7 @@ Different types of contributions have different review timelines:
 
 ## Review Steps
 
-### 1. Automated Checks
-
-When you submit an issue, automated workflows:
-
-- **Validate links** (for resource suggestions)
-- **Auto-label** based on content and type
-- **Welcome first-time contributors** with helpful guidance
-- **Track** for stale handling (30 days without activity)
-
-### 2. Maintainer Review
+### 1. Maintainer Review
 
 A maintainer will:
 
@@ -39,15 +30,14 @@ A maintainer will:
 - **Assess authority** of the source and author
 - **Verify recency** (updated within 12 months, or foundational)
 
-### 3. Discussion
+### 2. Discussion
 
 If clarification is needed:
 
 - Maintainer adds `needs-more-info` label
 - Specific questions asked in comments
-- 30-day window to respond before automatic closure
 
-### 4. Decision
+### 3. Decision
 
 The maintainer will make one of three decisions:
 
@@ -72,7 +62,7 @@ The maintainer will make one of three decisions:
     - Issue closed with documented explanation
     - You may appeal if you believe criteria were misapplied
 
-### 5. Implementation
+### 4. Implementation
 
 For approved issues:
 
