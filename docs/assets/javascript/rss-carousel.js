@@ -141,9 +141,9 @@ class RSSCarousel {
     `).join('');
   }
 
-  // Show specific page (3 items per page)
+  // Show specific page (responsive items per page)
   showPage(pageIndex) {
-    const itemsPerPage = 3;
+    const itemsPerPage = this.getItemsPerPage();
     const items = this.container.querySelectorAll('.rss-item');
     const totalPages = Math.ceil(this.items.length / itemsPerPage);
     
@@ -173,9 +173,17 @@ class RSSCarousel {
     }
   }
 
+  // Get items per page based on screen size
+  getItemsPerPage() {
+    const width = window.innerWidth;
+    if (width <= 768) return 1;  // Mobile: 1 item
+    if (width <= 1024) return 2; // Tablet: 2 items
+    return 3;                     // Desktop: 3 items
+  }
+
   // Navigate to next page
   next() {
-    const itemsPerPage = 3;
+    const itemsPerPage = this.getItemsPerPage();
     const totalPages = Math.ceil(this.items.length / itemsPerPage);
     const nextPage = Math.min(this.currentPage + 1, totalPages - 1);
     this.showPage(nextPage);
@@ -195,7 +203,7 @@ class RSSCarousel {
     
     // Start new interval
     this.autoScrollInterval = setInterval(() => {
-      const itemsPerPage = 3;
+      const itemsPerPage = this.getItemsPerPage();
       const totalPages = Math.ceil(this.items.length / itemsPerPage);
       
       // Go to next page, or loop back to first page
@@ -244,6 +252,16 @@ class RSSCarousel {
       carousel.addEventListener('mouseenter', () => this.stopAutoScroll());
       carousel.addEventListener('mouseleave', () => this.startAutoScroll());
     }
+
+    // Handle window resize to adjust items per page
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // Re-render current page with new items per page
+        this.showPage(this.currentPage);
+      }, 250);
+    });
   }
 
   // Format date

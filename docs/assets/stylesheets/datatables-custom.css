@@ -88,3 +88,80 @@ table.dataTable tbody td {
 .dataTables_wrapper .dataTables_paginate {
   font-size: 0.7rem !important;
 }
+
+/* Responsive table adjustments */
+@media screen and (max-width: 768px) {
+  /* Make table wrapper scrollable horizontally */
+  .dataTables_wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Reduce search box width on mobile */
+  .dataTables_wrapper .dataTables_filter input {
+    min-width: 150px;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  /* Reduce padding in table cells */
+  table.dataTable thead th,
+  table.dataTable tbody td {
+    padding: 0.5rem 0.4rem !important;
+  }
+
+  table.dataTable thead th:first-child,
+  table.dataTable tbody td:first-child {
+    padding-left: 0.6rem !important;
+  }
+
+  /* Adjust font sizes for mobile */
+  table.dataTable,
+  table.dataTable thead th,
+  table.dataTable tbody td {
+    font-size: 0.7rem !important;
+  }
+
+  /* Make info and pagination text smaller */
+  .dataTables_wrapper .dataTables_info,
+  .dataTables_wrapper .dataTables_paginate {
+    font-size: 0.65rem !important;
+  }
+
+  /* Stack pagination on mobile if needed */
+  .dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.25rem 0.5rem !important;
+    margin-left: 0.1rem !important;
+  }
+}
+
+/* Very small screens */
+@media screen and (max-width: 480px) {
+  /* Further reduce padding */
+  table.dataTable thead th,
+  table.dataTable tbody td {
+    padding: 0.4rem 0.3rem !important;
+  }
+
+  table.dataTable thead th:first-child,
+  table.dataTable tbody td:first-child {
+    padding-left: 0.5rem !important;
+  }
+
+  /* Even smaller fonts */
+  table.dataTable,
+  table.dataTable thead th,
+  table.dataTable tbody td {
+    font-size: 0.65rem !important;
+  }
+
+  /* Compact search box */
+  .dataTables_wrapper .dataTables_filter input {
+    min-width: 120px;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .dataTables_wrapper .dataTables_filter label {
+    font-size: 0.7rem !important;
+  }
+}

@@ -94,19 +94,49 @@
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
+  .upvote-container {
+    gap: 0.3rem;
+  }
+
   .upvote-btn {
-    min-width: 24px;
-    min-height: 24px;
-    font-size: 0.9rem;
+    min-width: 20px;
+    min-height: 20px;
+    font-size: 0.85rem;
+    padding: 0.15rem;
   }
 
   .upvote-icon {
-    width: 0.9rem;
-    height: 0.9rem;
+    width: 0.85rem;
+    height: 0.85rem;
   }
 
   .vote-count {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* Very small screens */
+@media screen and (max-width: 480px) {
+  .upvote-container {
+    gap: 0.25rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .upvote-btn {
+    min-width: 18px;
+    min-height: 18px;
+    font-size: 0.8rem;
+    padding: 0.1rem;
+  }
+
+  .upvote-icon {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .vote-count {
+    font-size: 0.65rem;
   }
 }
 
