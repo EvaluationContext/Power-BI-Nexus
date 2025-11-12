@@ -93,7 +93,8 @@
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 768px) {
+/* Medium tablet and below */
+@media screen and (max-width: 767px) {
   .upvote-container {
     gap: 0.3rem;
   }
@@ -115,8 +116,8 @@
   }
 }
 
-/* Very small screens */
-@media screen and (max-width: 480px) {
+/* Very small screens (phones) */
+@media screen and (max-width: 479px) {
   .upvote-container {
     gap: 0.25rem;
     flex-direction: column;

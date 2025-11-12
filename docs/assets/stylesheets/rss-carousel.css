@@ -296,7 +296,7 @@
 }
 
 /* Responsive design */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 991px) {
   .rss-carousel-items {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -311,7 +311,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .rss-carousel-items {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -361,5 +361,35 @@
   
   .rss-control-icon {
     font-size: 1rem;
+  }
+}
+
+/* Very small phones (320px - iPhone 5) */
+@media screen and (max-width: 479px) {
+  #rss-carousel-widget {
+    padding: 0.25rem 0.25rem 0.5rem 0.25rem !important;
+  }
+
+  .rss-carousel-title {
+    font-size: 1.25rem;
+    margin: 0.25rem 0 0.75rem 0 !important;
+  }
+
+  .rss-item {
+    height: 400px;
+  }
+
+  .rss-item-content {
+    padding: 0.75rem;
+  }
+
+  .rss-nav-prev,
+  .rss-nav-next {
+    width: 36px;
+    height: 36px;
+  }
+
+  .rss-control-icon {
+    font-size: 0.9rem;
   }
 }

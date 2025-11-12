@@ -176,9 +176,9 @@ class RSSCarousel {
   // Get items per page based on screen size
   getItemsPerPage() {
     const width = window.innerWidth;
-    if (width <= 768) return 1;  // Mobile: 1 item
-    if (width <= 1024) return 2; // Tablet: 2 items
-    return 3;                     // Desktop: 3 items
+    if (width <= 767) return 1;   // Mobile (up to medium tablet): 1 item
+    if (width <= 991) return 2;   // Large tablet: 2 items
+    return 3;                      // Desktop: 3 items
   }
 
   // Navigate to next page

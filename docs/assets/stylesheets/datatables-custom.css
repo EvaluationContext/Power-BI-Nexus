@@ -1,9 +1,16 @@
 /* DataTables custom styling to match Material theme */
 
+/* Table wrapper - ensure it can grow */
+.dataTables_wrapper {
+  width: 100%;
+  overflow: visible;
+}
+
 /* Table outer border */
 table.dataTable {
   border: 1px solid var(--md-default-fg-color--lightest);
   border-collapse: collapse;
+  width: 100% !important;
 }
 
 /* Search box styling */
@@ -90,11 +97,19 @@ table.dataTable tbody td {
 }
 
 /* Responsive table adjustments */
-@media screen and (max-width: 768px) {
-  /* Make table wrapper scrollable horizontally */
+/* Medium tablet and below (767px matches industry standard) */
+@media screen and (max-width: 767px) {
+  /* Make table wrapper scrollable horizontally on mobile */
   .dataTables_wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* Ensure table maintains proper width in scroll container */
+  /* Using 320px (iPhone 5 viewport) as absolute minimum */
+  table.dataTable {
+    min-width: 320px;
+    width: 100% !important;
   }
 
   /* Reduce search box width on mobile */
@@ -135,8 +150,8 @@ table.dataTable tbody td {
   }
 }
 
-/* Very small screens */
-@media screen and (max-width: 480px) {
+/* Very small screens (phones - 479px matches industry standard) */
+@media screen and (max-width: 479px) {
   /* Further reduce padding */
   table.dataTable thead th,
   table.dataTable tbody td {

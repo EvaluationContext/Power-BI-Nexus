@@ -25,8 +25,8 @@ table th:has(.type-label) {
   white-space: normal;
 }
 
-/* On larger screens, prevent wrapping */
-@media screen and (min-width: 769px) {
+/* On larger screens (tablets and up), prevent wrapping */
+@media screen and (min-width: 768px) {
   table td:has(.type-label),
   table th:has(.type-label) {
     white-space: nowrap;

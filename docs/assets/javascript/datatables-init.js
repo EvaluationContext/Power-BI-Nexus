@@ -71,6 +71,7 @@ function initializeDataTables() {
             info: false,
             ordering: true, // Enable sorting
             order: [[4, 'desc']], // Sort by Upvotes column (index 4)
+            autoWidth: false, // Disable automatic column width calculation
             columnDefs: [
               {
                 // Upvotes column - simple numeric sorting
@@ -83,6 +84,17 @@ function initializeDataTables() {
               search: "Search:",
               searchPlaceholder: "Type to search..."
             }
+          });
+
+          // Handle window resize to adjust table width
+          let resizeTimeout;
+          jQuery(window).on('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+              if (jQuery.fn.DataTable.isDataTable(tableElement)) {
+                table.columns.adjust().draw();
+              }
+            }, 250);
           });
 
           // Refresh table sorting when votes update
