@@ -193,7 +193,7 @@ def fetch_feed(feed_info):
         return []
 
 
-def filter_recent_items(items, days=7):
+def filter_recent_items(items, days=14):
     """Filter items from last N days"""
     cutoff_date = datetime.now() - timedelta(days=days)
     
@@ -210,7 +210,7 @@ def clear_old_items(db, cutoff_date):
     """Clear items older than cutoff date from Firestore"""
     items_ref = db.collection('rssItems')
     
-    # Query for old items (older than 7 days)
+    # Query for old items (older than 14 days)
     old_docs = items_ref.where('pubDate', '<', cutoff_date.isoformat()).stream()
     
     count = 0
@@ -283,15 +283,15 @@ def main():
         
         print(f"Total items fetched: {len(all_items)}")
         
-        # Filter to last 7 days
+        # Filter to last 14 days
         recent_items = filter_recent_items(all_items)
-        print(f"Items from last 7 days: {len(recent_items)}")
+        print(f"Items from last 14 days: {len(recent_items)}")
         
         # Sort by date (newest first)
         recent_items.sort(key=lambda x: x['pubDate'], reverse=True)
         
-        # Clear items older than 7 days
-        cutoff_date = datetime.now() - timedelta(days=7)
+        # Clear items older than 14 days
+        cutoff_date = datetime.now() - timedelta(days=14)
         clear_old_items(db, cutoff_date)
         
         # Save new items (will upsert, preventing duplicates)
