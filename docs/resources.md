@@ -68,8 +68,32 @@ Resources to help you get up to speed with Power BI.
                         xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCFp1vaKzpfvoGai0vE5VJ0w" 
                         htmlUrl="https://www.youtube.com/@GuyInACube/featured"/>
                 <outline type="rss" text="EvaluationContext" title="EvaluationContext" 
-                        xmlUrl="https://evaluationcontext.github.io/feed_rss_updated.xml" 
+                        xmlUrl="https://evaluationcontext.github.io/feed_rss_created.xml" 
                         htmlUrl="https://evaluationcontext.github.io/"/>
+                <outline type="rss" text="Kerry Kolosko" title="Kerry Kolosko" 
+                        xmlUrl="https://kerrykolosko.com/feed/" 
+                        htmlUrl="https://kerrykolosko.com/"/>
+                <outline type="rss" text="Kasper on BI" title="Kasper on BI" 
+                        xmlUrl="https://www.kasperonbi.com/feed/" 
+                        htmlUrl="https://www.kasperonbi.com/"/>
+                <outline type="rss" text="Goodly" title="Goodly" 
+                        xmlUrl="https://goodly.co.in/blog/feed/" 
+                        htmlUrl="https://goodly.co.in/blog/"/>
+                <outline type="rss" text="ThinkBI" title="ThinkBI" 
+                        xmlUrl="https://www.thinkbi.de/feed/" 
+                        htmlUrl="https://www.thinkbi.de/category/english-posts/"/>
+                <outline type="rss" text="Power BI Park" title="Power BI Park" 
+                        xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC6g1VsTNgW1ntdW97wwL6nw" 
+                        htmlUrl="https://www.youtube.com/@PowerBIPark"/>
+                <outline type="rss" text="SSBIpolar" title="SSBIpolar" 
+                        xmlUrl="https://ssbipolar.com/feed/" 
+                        htmlUrl="https://ssbipolar.com/category/power-bi/"/>
+                <outline type="rss" text="SQL Server BI Blog" title="SQL Server BI Blog" 
+                        xmlUrl="https://sqlserverbi.blog/feed/" 
+                        htmlUrl="https://sqlserverbi.blog/"/>
+                <outline type="rss" text="Data-Marc" title="Data-Marc" 
+                        xmlUrl="https://data-marc.com/feed/" 
+                        htmlUrl="https://data-marc.com/"/>
                 </outline>
         </body>
         </opml>
@@ -87,9 +111,17 @@ Resources to help you get up to speed with Power BI.
 | [Power BI Tips](https://powerbi.tips/) | <span class="type-label blog">Blog</span> | Practical tips, theme generators, and report design tutorials | [:material-rss:](https://powerbi.tips/feed/){target="_blank"} |
 | [Guy in a Cube](https://www.youtube.com/@GuyInACube/featured) | <span class="type-label video">Video</span> | Weekly YouTube videos with Power BI tips, feature updates, and live Q&A sessions | [:material-rss:](https://www.youtube.com/feeds/videos.xml?channel_id=UCFp1vaKzpfvoGai0vE5VJ0w){target="_blank"} |
 | [EvaluationContext](https://evaluationcontext.github.io/) | <span class="type-label blog">Blog</span> | Power BI development insights and technical articles by [Jake Duddy](https://www.linkedin.com/in/jakeduddy/) | [:material-rss:](https://evaluationcontext.github.io/feed_rss_created.xml){target="_blank"} |
-| [Insightsinmotion](https://github.com/alexbadiu-insightsinmotion/PBI-Documentation/tree/main) | <span class="type-label blog">Blog</span> | Series of articles covering components: Documentation, Themes, Deneb, TMDL & DAX Query View by [Alexandru Badiu](https://www.linkedin.com/in/alexandru-badiu/) and [Greg Philps](https://www.linkedin.com/in/gregphilps/) | |
+| [Insightsinmotion](https://github.com/alexbadiu-insightsinmotion/PBI-Documentation/tree| [Insightsinmotion](https://github.com/alexbadiu-insightsinmotion/PBI-Documentation/tree/main) | <span class="type-label blog">Blog</span> | Series of articles covering components: Documentation, Themes, Deneb, TMDL & DAX Query View by [Alexandru Badiu](https://www.linkedin.com/in/alexandru-badiu/) and [Greg Philps](https://www.linkedin.com/in/gregphilps/) | |
 | [DAX Noob](https://daxnoob.blog/) | <span class="type-label blog">Blog</span> | DAX explanations, patterns, and learning tips by [Justin Martin](https://www.linkedin.com/in/daxnoobjustin/) | [:material-rss:](https://daxnoob.blog/feed/){target="_blank"} |
-| [How To Power BI](https://www.youtube.com/@HowtoPowerBI) | <span class="type-label video">Video</span> | Clean, accessible design practices for Power BI reports | [:material-rss:](https://www.youtube.com/feeds/videos.xml?channel_id=UCcfngi7_ASuo5jdWX0bNauQ){target="_blank"} |
+| [Kerry Kolosko](https://kerrykolosko.com/) | <span class="type-label blog">Blog</span> | Sharing her journey and learnings in reporting, data viz and data storytelling and decision-making, by [Kerry Kolosko](https://www.linkedin.com/in/kerrykolosko/) | [:material-rss:](https://kerrykolosko.com/feed/){target="_blank"} |
+| [Kasper on BI](https://www.kasperonbi.com/) | <span class="type-label blog">Blog</span> | Power BI and Microsoft Fabric insights by [Kasper de Jonge](https://www.linkedin.com/in/kasperdejonge/) | [:material-rss:](https://www.kasperonbi.com/feed/){target="_blank"} |
+| [Goodly](https://goodly.co.in/blog/) | <span class="type-label blog">Blog</span> | Power BI tutorials and best practices by [Chandeep Chhabra](https://www.linkedin.com/in/chandeepchhabra/) | [:material-rss:](https://goodly.co.in/blog/feed/){target="_blank"} |
+| [ThinkBI](https://www.thinkbi.de/category/english-posts/) | <span class="type-label blog">Blog</span> | Addressing topics on his mind by [Marcus Wegener](https://www.linkedin.com/in/marcuswegener/) | [:material-rss:](https://www.thinkbi.de/feed/){target="_blank"} |
+| [Power BI Park](https://www.youtube.com/@PowerBIPark) | <span class="type-label video">Video</span> | Power BI tutorials and community resources by [Injae Park](https://www.linkedin.com/in/injae-park/) | [:material-rss:](https://www.youtube.com/feeds/videos.xml?channel_id=UC6g1VsTNgW1ntdW97wwL6nw){target="_blank"} |
+| [SSBIpolar](https://ssbipolar.com/category/power-bi/) | <span class="type-label blog">Blog</span> | Business Intelligence, Data Governance, Mental Health, Diversity, Martial Arts, and Heavy Metal by [Matthew Roche](https://www.linkedin.com/in/matthewroche/) | [:material-rss:](https://ssbipolar.com/feed/){target="_blank"} |
+| [SQL Server BI Blog](https://sqlserverbi.blog/) | <span class="type-label blog">Blog</span> | Sharing experiences with Microsoft data platform, SQL Server BI, Data Modeling, SSAS Design, Power Pivot, Power BI, and advanced visualization since 2009 by [Paul Turley](https://www.linkedin.com/in/pturley/) | [:material-rss:](https://sqlserverbi.blog/feed/){target="_blank"} |
+| [Data-Marc](https://data-marc.com/) | <span class="type-label blog">Blog</span> | Sharing thoughts, experience, best-practices and enthusiasm about Microsoft data platform by [Marc Lelijveld](https://www.linkedin.com/in/marclelijveld/) | [:material-rss:](https://data-marc.com/feed/){target="_blank"} |
+">Video</span> | Clean, accessible design practices for Power BI reports | [:material-rss:](https://www.youtube.com/feeds/videos.xml?channel_id=UCcfngi7_ASuo5jdWX0bNauQ){target="_blank"} |
 | [Microsoft Docs](https://learn.microsoft.com/en-us/power-bi/) | <span class="type-label official">Official</span> | Canonical reference for features, concepts, tutorials, governance, and deployment guidance | |
 | [Microsoft Learn: Fabric Modules](https://learn.microsoft.com/en-us/training/browse/?products=fabric) | <span class="type-label official">Official</span> | Role-based paths for Fabric workloads including Power BI | |
 | [Power BI Community Forum](https://community.fabric.microsoft.com/t5/Power-BI-forums/ct-p/powerbi) | <span class="type-label community">Community</span> | Ask and answer questions, find solutions, galleries, vote on ideas to influence the product roadmap | |
@@ -100,6 +132,7 @@ Resources to help you get up to speed with Power BI.
 | [DAX.lib](https://dax.lib/) | <span class="type-label community">Community</span> | Library of reusable DAX functions and patterns for common calculations | |
 | [Deneb Guide](https://deneb.guide/) | <span class="type-label community">Community</span> | Complete guide to Deneb custom visual for Vega and Vega-Lite declarative visualizations in Power BI | |
 | [Tabular Editor](https://tabulareditor.com/) | <span class="type-label tool">Tool</span> | Advanced offline modeling, calculation groups and scripting tool | |
+| [DAX Studio](https://daxstudio.org/) | <span class="type-label tool">Tool</span> | Query editor and performance analyzer for DAX. Built-in VertiPaq Analyzer and query plan visualization | |
 | [Best Practice Analyzer](https://docs.tabulareditor.com/te2/Best-Practice-Analyzer.html) | <span class="type-label tool">Tool</span> | Automated rule-based validation for semantic models. Built into Tabular Editor 3 | |
 | [Vertipaq Analyzer](https://github.com/sql-bi/VertiPaq-Analyzer) | <span class="type-label tool">Tool</span> | Inspect model storage, compression, memory usage. Built into DAX Studio and Tabular Editor 3 | |
 | [PBI Inspector](https://github.com/NatVanG/PBI-Inspector) | <span class="type-label tool">Tool</span> | Automated quality checks and documentation for Power BI reports | |

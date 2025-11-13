@@ -71,6 +71,46 @@ RSS_FEEDS = [
         'name': 'How To Power BI',
         'url': 'https://www.youtube.com/feeds/videos.xml?channel_id=UCcfngi7_ASuo5jdWX0bNauQ',
         'category': 'Video'
+    },
+    {
+        'name': 'Kerry Kolosko',
+        'url': 'https://kerrykolosko.com/feed/',
+        'category': 'Blog'
+    },
+    {
+        'name': 'Kasper on BI',
+        'url': 'https://www.kasperonbi.com/feed/',
+        'category': 'Blog'
+    },
+    {
+        'name': 'Goodly',
+        'url': 'https://goodly.co.in/blog/feed/',
+        'category': 'Blog'
+    },
+    {
+        'name': 'ThinkBI',
+        'url': 'https://www.thinkbi.de/feed/',
+        'category': 'Blog'
+    },
+    {
+        'name': 'Power BI Park',
+        'url': 'https://www.youtube.com/feeds/videos.xml?channel_id=UC6g1VsTNgW1ntdW97wwL6nw',
+        'category': 'Video'
+    },
+    {
+        'name': 'SSBIpolar',
+        'url': 'https://ssbipolar.com/feed/',
+        'category': 'Blog'
+    },
+    {
+        'name': 'SQL Server BI Blog',
+        'url': 'https://sqlserverbi.blog/feed/',
+        'category': 'Blog'
+    },
+    {
+        'name': 'Data-Marc',
+        'url': 'https://data-marc.com/feed/',
+        'category': 'Blog'
     }
 ]
 
