@@ -33,11 +33,6 @@ RSS_FEEDS = [
         'category': 'Blog'
     },
     {
-        'name': 'RADACAD',
-        'url': 'https://radacad.com/feed',
-        'category': 'Blog'
-    },
-    {
         'name': 'Data Goblins',
         'url': 'https://data-goblins.com/power-bi?format=rss',
         'category': 'Blog'
@@ -111,6 +106,16 @@ RSS_FEEDS = [
         'name': 'Data-Marc',
         'url': 'https://data-marc.com/feed/',
         'category': 'Blog'
+    },
+    {
+        'name': 'Havens Consulting',
+        'url': 'https://www.youtube.com/feeds/videos.xml?channel_id=UCjlfQwqb-0S40XQ8seYPLSw',
+        'category': 'Video'
+    },
+    {
+        'name': 'Analytic Endeavors',
+        'url': 'https://www.youtube.com/feeds/videos.xml?channel_id=UCQSSIe3typhsBuFEoTeeqLg',
+        'category': 'Video'
     }
 ]
 

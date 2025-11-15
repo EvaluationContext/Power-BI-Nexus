@@ -52,9 +52,6 @@ Resources to help you get up to speed with Power BI.
                 <outline type="rss" text="FourMoo" title="FourMoo" 
                         xmlUrl="https://www.fourmoo.com/blog/feed/" 
                         htmlUrl="https://www.fourmoo.com/blog/"/>
-                <outline type="rss" text="RADACAD" title="RADACAD" 
-                        xmlUrl="https://radacad.com/feed" 
-                        htmlUrl="https://radacad.com/blog/"/>
                 <outline type="rss" text="Data Goblins" title="Data Goblins" 
                         xmlUrl="https://data-goblins.com/power-bi?format=rss" 
                         htmlUrl="https://data-goblins.com/articles"/>
@@ -94,6 +91,12 @@ Resources to help you get up to speed with Power BI.
                 <outline type="rss" text="Data-Marc" title="Data-Marc" 
                         xmlUrl="https://data-marc.com/feed/" 
                         htmlUrl="https://data-marc.com/"/>
+                <outline type="rss" text="Havens Consulting" title="Havens Consulting" 
+                        xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCjlfQwqb-0S40XQ8seYPLSw" 
+                        htmlUrl="https://www.youtube.com/@HavensConsulting"/>
+                <outline type="rss" text="Analytic Endeavors" title="Analytic Endeavors" 
+                        xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCQSSIe3typhsBuFEoTeeqLg" 
+                        htmlUrl="https://www.youtube.com/@AnalyticEndeavors"/>
                 </outline>
         </body>
         </opml>
@@ -105,13 +108,13 @@ Resources to help you get up to speed with Power BI.
 | [SQLBI](https://www.sqlbi.com/articles/) | <span class="type-label blog">Blog</span> | Advanced DAX patterns, optimization techniques, and modeling best practices by [Marco Russo](https://www.linkedin.com/in/sqlbi/), [Alberto Ferrari](https://www.linkedin.com/in/albertoferrarisqlbi/) and [Kurt Buhler](https://www.linkedin.com/in/kurtbuhler/) | [:material-rss:](https://feeds.feedburner.com/sqlbi_blog){target="_blank"} |
 | [Crossjoin](https://blog.crossjoin.co.uk/) | <span class="type-label blog">Blog</span> | Advanced topics on Power BI, Fabric, and performance tuning by [Chris Webb](https://www.linkedin.com/in/chriswebb6/) | [:material-rss:](https://blog.crossjoin.co.uk/feed/){target="_blank"} |
 | [FourMoo](https://www.fourmoo.com/blog/) | <span class="type-label blog">Blog</span> | Enterprise architecture, governance, and performance optimization by [Gilbert Quevauvilliers](https://www.linkedin.com/in/fourmoo/) | [:material-rss:](https://www.fourmoo.com/blog/feed/){target="_blank"} |
-| [RADACAD](https://radacad.com/blog/) | <span class="type-label blog">Blog</span> | Deep-dive articles on Power BI architecture, DAX, and data modeling patterns by [Reza Rad](https://www.linkedin.com/in/rezarad/) | [:material-rss:](https://radacad.com/feed){target="_blank"} |
+| [RADACAD](https://radacad.com/blog/) | <span class="type-label blog">Blog</span> | Deep-dive articles on Power BI architecture, DAX, and data modeling patterns by [Reza Rad](https://www.linkedin.com/in/rezarad/) | |
 | [Data Goblins](https://data-goblins.com/articles) | <span class="type-label blog">Blog</span> | Technical deep dives on Power BI internals, performance analysis, and visualizations by [Kurt Buhler](https://www.linkedin.com/in/kurtbuhler/) | [:material-rss:](https://data-goblins.com/power-bi?format=rss){target="_blank"} |
 | [Fabric Guru](https://fabric.guru/) | <span class="type-label blog">Blog</span> | Microsoft Fabric architecture, patterns, and adoption strategies by [Sandeep Pawar](https://www.linkedin.com/in/sanpawar/) | [:material-rss:](https://fabric.guru/rss.xml){target="_blank"} |
 | [Power BI Tips](https://powerbi.tips/) | <span class="type-label blog">Blog</span> | Practical tips, theme generators, and report design tutorials | [:material-rss:](https://powerbi.tips/feed/){target="_blank"} |
 | [Guy in a Cube](https://www.youtube.com/@GuyInACube/featured) | <span class="type-label video">Video</span> | Weekly YouTube videos with Power BI tips, feature updates, and live Q&A sessions | [:material-rss:](https://www.youtube.com/feeds/videos.xml?channel_id=UCFp1vaKzpfvoGai0vE5VJ0w){target="_blank"} |
 | [EvaluationContext](https://evaluationcontext.github.io/) | <span class="type-label blog">Blog</span> | Power BI development insights and technical articles by [Jake Duddy](https://www.linkedin.com/in/jakeduddy/) | [:material-rss:](https://evaluationcontext.github.io/feed_rss_created.xml){target="_blank"} |
-| [Insightsinmotion](https://github.com/alexbadiu-insightsinmotion/PBI-Documentation/tree) | <span class="type-label blog">Blog</span> | Series of articles covering components: Documentation, Themes, Deneb, TMDL & DAX Query View by [Alexandru Badiu](https://www.linkedin.com/in/alexandru-badiu/) and [Greg Philps](https://www.linkedin.com/in/gregphilps/) | |
+| [Insightsinmotion](https://github.com/alexbadiu-insightsinmotion/PBI-Documentation) | <span class="type-label blog">Blog</span> | Series of articles covering components: Documentation, Themes, Deneb, TMDL & DAX Query View by [Alexandru Badiu](https://www.linkedin.com/in/alexandru-badiu/) and [Greg Philps](https://www.linkedin.com/in/gregphilps/) | |
 | [DAX Noob](https://daxnoob.blog/) | <span class="type-label blog">Blog</span> | DAX explanations, patterns, and learning tips by [Justin Martin](https://www.linkedin.com/in/daxnoobjustin/) | [:material-rss:](https://daxnoob.blog/feed/){target="_blank"} |
 | [Kerry Kolosko](https://kerrykolosko.com/) | <span class="type-label blog">Blog</span> | Sharing her journey and learnings in reporting, data viz and data storytelling and decision-making, by [Kerry Kolosko](https://www.linkedin.com/in/kerrykolosko/) | [:material-rss:](https://kerrykolosko.com/feed/){target="_blank"} |
 | [Kasper on BI](https://www.kasperonbi.com/) | <span class="type-label blog">Blog</span> | Power BI and Microsoft Fabric insights by [Kasper de Jonge](https://www.linkedin.com/in/kasperdejonge/) | [:material-rss:](https://www.kasperonbi.com/feed/){target="_blank"} |
@@ -122,6 +125,8 @@ Resources to help you get up to speed with Power BI.
 | [SQL Server BI Blog](https://sqlserverbi.blog/) | <span class="type-label blog">Blog</span> | Sharing experiences with Microsoft data platform, SQL Server BI, Data Modeling, SSAS Design, Power Pivot, Power BI, and advanced visualization since 2009 by [Paul Turley](https://www.linkedin.com/in/pturley/) | [:material-rss:](https://sqlserverbi.blog/feed/){target="_blank"} |
 | [Data-Marc](https://data-marc.com/) | <span class="type-label blog">Blog</span> | Sharing thoughts, experience, best-practices and enthusiasm about Microsoft data platform by [Marc Lelijveld](https://www.linkedin.com/in/marclelijveld/) | [:material-rss:](https://data-marc.com/feed/){target="_blank"} |
 | [How To Power BI](https://www.youtube.com/@HowtoPowerBI) | <span class="type-label video">Video</span> | Clean, accessible design practices for Power BI reports | [:material-rss:](https://www.youtube.com/feeds/videos.xml?channel_id=UCcfngi7_ASuo5jdWX0bNauQ){target="_blank"} |
+| [Havens Consulting](https://www.youtube.com/@HavensConsulting) | <span class="type-label video">Video</span> | Power BI tutorials, tips, and best practices by [Reid Havens](https://www.linkedin.com/in/reidhavens/) | [:material-rss:](https://www.youtube.com/feeds/videos.xml?channel_id=UCjlfQwqb-0S40XQ8seYPLSw){target="_blank"} |
+| [Analytic Endeavors](https://www.youtube.com/@AnalyticEndeavors) | <span class="type-label video">Video</span> | Power BI tutorials and development insights by [Reid Havens](https://www.linkedin.com/in/reidhavens/) and [Steve Campbell](https://www.linkedin.com/in/powerbisteve/) | [:material-rss:](https://www.youtube.com/feeds/videos.xml?channel_id=UCQSSIe3typhsBuFEoTeeqLg){target="_blank"} |
 | [Microsoft Docs](https://learn.microsoft.com/en-us/power-bi/) | <span class="type-label official">Official</span> | Canonical reference for features, concepts, tutorials, governance, and deployment guidance | |
 | [Microsoft Learn: Fabric Modules](https://learn.microsoft.com/en-us/training/browse/?products=fabric) | <span class="type-label official">Official</span> | Role-based paths for Fabric workloads including Power BI | |
 | [Power BI Community Forum](https://community.fabric.microsoft.com/t5/Power-BI-forums/ct-p/powerbi) | <span class="type-label community">Community</span> | Ask and answer questions, find solutions, galleries, vote on ideas to influence the product roadmap | |
