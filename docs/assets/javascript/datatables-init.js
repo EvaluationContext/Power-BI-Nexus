@@ -1,9 +1,30 @@
 // Initialize DataTables only on the resources page and learning tracks
-function initializeDataTables() {
+let isInitializing = false;
+let isInitialized = false;
+
+async function initializeDataTables() {
   // Only run on resources page or learning tracks
   if (!window.location.pathname.includes('/resources') && 
       !window.location.pathname.includes('/learning-tracks')) {
     return;
+  }
+
+  // Prevent multiple simultaneous initializations
+  if (isInitializing || isInitialized) {
+    return;
+  }
+
+  isInitializing = true;
+
+  // Wait for upvote manager to be ready if it exists
+  if (window.upvoteManagerReady) {
+    await window.upvoteManagerReady;
+    
+    // If no vote counts are loaded yet, wait a bit more
+    if (window.upvoteManager && window.upvoteManager.voteCounts && 
+        Object.keys(window.upvoteManager.voteCounts).length === 0) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
   }
   
   // Wait for DataTables library to be loaded
@@ -121,7 +142,11 @@ function initializeDataTables() {
         }
       }, 100);
     });
+    
+    isInitialized = true;
   }
+  
+  isInitializing = false;
 }// Add upvote column to table
 function addUpvoteColumn(table) {
   const thead = table.querySelector('thead tr');
@@ -132,7 +157,6 @@ function addUpvoteColumn(table) {
   // Check if upvote column already exists
   const existingUpvoteHeader = thead.querySelector('th:last-child');
   if (existingUpvoteHeader && existingUpvoteHeader.textContent.trim() === 'Upvotes') {
-    console.log('Upvotes column already exists, skipping');
     return;
   }
 
@@ -158,10 +182,12 @@ function addUpvoteColumn(table) {
         ? window.upvoteManager.getResourceId(resourceName)
         : resourceName.toLowerCase().replace(/[^a-z0-9]/g, '_');
 
-      // Get current vote count
-      const voteCount = window.upvoteManager 
-        ? window.upvoteManager.getVoteCount(resourceId)
-        : 0;
+      // Get vote count from upvoteManager
+      let voteCount = 0;
+      
+      if (window.upvoteManager && window.upvoteManager.initialized) {
+        voteCount = window.upvoteManager.getVoteCount(resourceId);
+      }
 
       // Create upvote cell
       const td = document.createElement('td');
@@ -169,7 +195,7 @@ function addUpvoteColumn(table) {
       td.setAttribute('data-vote-count', voteCount);
       td.setAttribute('data-order', voteCount); // For DataTables sorting
       
-      if (window.upvoteManager) {
+      if (window.upvoteManager && window.upvoteManager.initialized) {
         td.innerHTML = window.upvoteManager.createUpvoteButton(resourceName, resourceId);
       } else {
         td.innerHTML = `<div class="upvote-container upvote-loading">Loading...</div>`;
@@ -184,6 +210,16 @@ function addUpvoteColumn(table) {
 document.addEventListener('DOMContentLoaded', initializeDataTables);
 
 // Handle Material theme instant navigation
-document$.subscribe(function() {
-  initializeDataTables();
-});
+if (typeof document$ !== 'undefined') {
+  document$.subscribe(function() {
+    // Only reset and reinitialize if navigating to resources/learning-tracks page
+    // AND the upvoteManager is ready
+    if ((window.location.pathname.includes('/resources') || 
+         window.location.pathname.includes('/learning-tracks')) &&
+        window.upvoteManager && window.upvoteManager.initialized) {
+      isInitialized = false;
+      isInitializing = false;
+      initializeDataTables();
+    }
+  });
+}

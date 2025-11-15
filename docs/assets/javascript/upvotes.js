@@ -102,13 +102,18 @@ class UpvoteManager {
     }
 
     this.votesRef = this.database.ref('resource_votes');
-    this.initialized = true;
 
     // Get IP hash for voting
     await this.getIpHash();
 
+    // Load initial vote counts before setting up listener
+    await this.loadInitialVoteCounts();
+
     // Check which resources this IP has voted for
     await this.loadIpVotes();
+
+    // Mark as initialized AFTER all data is loaded
+    this.initialized = true;
 
     // Listen for vote changes in real-time
     this.votesRef.on('value', (snapshot) => {
@@ -120,6 +125,25 @@ class UpvoteManager {
     });
 
     return true;
+  }
+
+  // Load initial vote counts from Firebase
+  async loadInitialVoteCounts() {
+    try {
+      const snapshot = await this.votesRef.once('value');
+      const data = snapshot.val();
+      
+      if (data) {
+        this.voteCounts = data;
+        console.log('Loaded vote counts for', Object.keys(this.voteCounts).length, 'resources');
+      } else {
+        console.warn('No vote data found in Firebase');
+        this.voteCounts = {};
+      }
+    } catch (error) {
+      console.error('Error loading vote counts:', error);
+      this.voteCounts = {};
+    }
   }
 
   // Load votes for this IP address
@@ -318,14 +342,22 @@ class UpvoteManager {
 // Create global instance
 window.upvoteManager = new UpvoteManager();
 
+// Track initialization promise
+window.upvoteManagerReady = null;
+
 // Initialize when Firebase is ready
 document.addEventListener('DOMContentLoaded', async () => {
   // Wait a bit for Firebase to load
-  setTimeout(async () => {
-    const initialized = await window.upvoteManager.initialize();
-    if (initialized) {
-      window.upvoteManager.setupEventListeners();
-      console.log('Upvote system initialized');
-    }
-  }, 500);
+  window.upvoteManagerReady = new Promise(async (resolve) => {
+    setTimeout(async () => {
+      const initialized = await window.upvoteManager.initialize();
+      if (initialized) {
+        window.upvoteManager.setupEventListeners();
+        console.log('Upvote system initialized');
+        // Trigger a custom event to notify other scripts
+        window.dispatchEvent(new CustomEvent('upvoteManagerReady'));
+      }
+      resolve(initialized);
+    }, 500);
+  });
 });
