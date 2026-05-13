@@ -4,6 +4,3 @@ zensical
 # Git Contributors Plugin - Shows contributor avatars at bottom of pages
 mkdocs-git-committers-plugin-2
 GitPython
-
-# RSS Feed Aggregation
-feedparser==6.0.11
