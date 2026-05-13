@@ -59,22 +59,14 @@ extra_css = [
   "assets/stylesheets/pill.css",
   "https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css",
   "assets/stylesheets/datatables-custom.css",
-  "assets/stylesheets/git-committers.css",
-  "assets/stylesheets/upvotes.css",
-  "assets/stylesheets/rss-carousel.css"
+  "assets/stylesheets/git-committers.css"
 ]
 
 # Read more: https://zensical.org/docs/customization/#additional-javascript
 extra_javascript = [
-  "https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js",
-  "https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js",
-  "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js",
   "https://code.jquery.com/jquery-3.7.1.min.js",
   "https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js",
-  "assets/javascript/firebase-config.js",
-  "assets/javascript/upvotes.js",
-  "assets/javascript/datatables-init.js",
-  "assets/javascript/rss-carousel.js"
+  "assets/javascript/datatables-init.js"
 ]
 
 [project.theme]

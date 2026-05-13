@@ -15,17 +15,6 @@ async function initializeDataTables() {
   }
 
   isInitializing = true;
-
-  // Wait for upvote manager to be ready if it exists
-  if (window.upvoteManagerReady) {
-    await window.upvoteManagerReady;
-    
-    // If no vote counts are loaded yet, wait a bit more
-    if (window.upvoteManager && window.upvoteManager.voteCounts && 
-        Object.keys(window.upvoteManager.voteCounts).length === 0) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-    }
-  }
   
   // Wait for DataTables library to be loaded
   if (typeof jQuery !== 'undefined' && jQuery.fn.DataTable) {
@@ -55,9 +44,6 @@ async function initializeDataTables() {
         return;
       }
 
-      // Add upvote column to table header
-      addUpvoteColumn(tableElement);
-      
       // Verify column count consistency
       const theadRow = thead.querySelector('tr');
       const headerColCount = theadRow ? theadRow.querySelectorAll('th').length : 0;
@@ -91,16 +77,8 @@ async function initializeDataTables() {
             lengthChange: false,
             info: false,
             ordering: true, // Enable sorting
-            order: [[4, 'desc']], // Sort by Upvotes column (index 4)
+            order: [[0, 'asc']],
             autoWidth: false, // Disable automatic column width calculation
-            columnDefs: [
-              {
-                // Upvotes column - simple numeric sorting
-                targets: 4,
-                type: 'num',
-                orderable: true
-              }
-            ],
             language: {
               search: "Search:",
               searchPlaceholder: "Type to search..."
@@ -117,26 +95,6 @@ async function initializeDataTables() {
               }
             }, 250);
           });
-
-          // Refresh table sorting when votes update
-          if (window.upvoteManager) {
-            const originalUpdate = window.upvoteManager.updateVoteCount.bind(window.upvoteManager);
-            window.upvoteManager.updateVoteCount = function(resourceId) {
-              originalUpdate(resourceId);
-              // Update data-order attribute and redraw
-              setTimeout(() => {
-                const voteCount = window.upvoteManager.getVoteCount(resourceId);
-                jQuery(`td[data-vote-count]`).each(function() {
-                  const container = jQuery(this).find(`[data-resource-id="${resourceId}"]`);
-                  if (container.length) {
-                    jQuery(this).attr('data-order', voteCount);
-                    jQuery(this).attr('data-vote-count', voteCount);
-                  }
-                });
-                table.rows().invalidate().draw(false);
-              }, 100);
-            };
-          }
         } catch (error) {
           console.error('DataTables initialization error:', error);
         }
@@ -147,63 +105,6 @@ async function initializeDataTables() {
   }
   
   isInitializing = false;
-}// Add upvote column to table
-function addUpvoteColumn(table) {
-  const thead = table.querySelector('thead tr');
-  const tbody = table.querySelector('tbody');
-  
-  if (!thead || !tbody) return;
-
-  // Check if upvote column already exists
-  const existingUpvoteHeader = thead.querySelector('th:last-child');
-  if (existingUpvoteHeader && existingUpvoteHeader.textContent.trim() === 'Upvotes') {
-    return;
-  }
-
-  // Add header
-  const th = document.createElement('th');
-  th.textContent = 'Upvotes';
-  th.style.width = '100px';
-  th.style.textAlign = 'center';
-  thead.appendChild(th);
-
-  // Add upvote cell to each row
-  const rows = tbody.querySelectorAll('tr');
-  rows.forEach(row => {
-    const cells = row.querySelectorAll('td');
-    if (cells.length > 0) {
-      // Get resource name from first cell (Source column)
-      const firstCell = cells[0];
-      const link = firstCell.querySelector('a');
-      const resourceName = link ? link.textContent.trim() : firstCell.textContent.trim();
-      
-      // Create resource ID
-      const resourceId = window.upvoteManager 
-        ? window.upvoteManager.getResourceId(resourceName)
-        : resourceName.toLowerCase().replace(/[^a-z0-9]/g, '_');
-
-      // Get vote count from upvoteManager
-      let voteCount = 0;
-      
-      if (window.upvoteManager && window.upvoteManager.initialized) {
-        voteCount = window.upvoteManager.getVoteCount(resourceId);
-      }
-
-      // Create upvote cell
-      const td = document.createElement('td');
-      td.style.textAlign = 'center';
-      td.setAttribute('data-vote-count', voteCount);
-      td.setAttribute('data-order', voteCount); // For DataTables sorting
-      
-      if (window.upvoteManager && window.upvoteManager.initialized) {
-        td.innerHTML = window.upvoteManager.createUpvoteButton(resourceName, resourceId);
-      } else {
-        td.innerHTML = `<div class="upvote-container upvote-loading">Loading...</div>`;
-      }
-      
-      row.appendChild(td);
-    }
-  });
 }
 
 // Initialize on DOM ready
@@ -213,10 +114,8 @@ document.addEventListener('DOMContentLoaded', initializeDataTables);
 if (typeof document$ !== 'undefined') {
   document$.subscribe(function() {
     // Only reset and reinitialize if navigating to resources/learning-tracks page
-    // AND the upvoteManager is ready
-    if ((window.location.pathname.includes('/resources') || 
-         window.location.pathname.includes('/learning-tracks')) &&
-        window.upvoteManager && window.upvoteManager.initialized) {
+    if (window.location.pathname.includes('/resources') || 
+        window.location.pathname.includes('/learning-tracks')) {
       isInitialized = false;
       isInitializing = false;
       initializeDataTables();
