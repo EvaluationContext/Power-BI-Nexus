@@ -77,6 +77,7 @@ async function initializeDataTables() {
             lengthChange: false,
             info: false,
             ordering: true, // Enable sorting
+            order: [[0, 'asc']],
             autoWidth: false, // Disable automatic column width calculation
             language: {
               search: "Search:",
