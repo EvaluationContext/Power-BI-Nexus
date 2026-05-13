@@ -12,6 +12,5 @@ Power BI Nexus solves the fragmentation problem in Power BI learning by curating
 
 - **Best Practices Library** - Curated guidance on data modeling, DAX, security, deployment, and more
 - **Learning Tracks** - Structured paths from beginner to advanced
-- **Curated Resources** - Community-voted links to blogs, tools, videos, and documentation
-- **Unified RSS Feed** - Stay current with one subscription covering 10+ authoritative sources
+- **Curated Resources** - Community-curated links to blogs, tools, videos, and documentation
 - **Community-Driven** - Open source with clear governance and contribution guidelines

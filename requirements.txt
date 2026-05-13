@@ -7,4 +7,3 @@ GitPython
 
 # RSS Feed Aggregation
 feedparser==6.0.11
-google-cloud-firestore==2.14.0
