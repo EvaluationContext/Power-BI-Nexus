@@ -2,7 +2,7 @@
 
 A community-curated hub for Power BI best practices, resources, and learning tracks.
 
-[![Visit Site](https://img.shields.io/badge/Visit%20Site-009688?style=for-the-badge&logo=google-chrome&logoColor=white)](https://evaluationcontext.github.io/Power-BI-Nexus/)
+[![Visit Site](https://img.shields.io/badge/Visit%20Site-009688?style=for-the-badge&logo=google-chrome&logoColor=white)](https://evaluationcontext.com/Power-BI-Nexus/)
 
 ## About
 

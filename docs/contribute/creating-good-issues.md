@@ -68,9 +68,9 @@ For resource suggestions, provide:
 ### Example
 
 > ```
-> Resource URL: https://evaluationcontext.github.io/
+> Resource URL: https://evaluationcontext.com/
 > Author: Jake Duddy
-> RSS Feed: https://evaluationcontext.github.io/feed_rss_created.xml.xml
+> RSS Feed: https://evaluationcontext.com/feed_rss_created.xml
 > Last Updated: November 2025
 > ```
 

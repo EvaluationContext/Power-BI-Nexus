@@ -65,8 +65,8 @@ Resources to help you get up to speed with Power BI.
                         xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCFp1vaKzpfvoGai0vE5VJ0w" 
                         htmlUrl="https://www.youtube.com/@GuyInACube/featured"/>
                 <outline type="rss" text="EvaluationContext" title="EvaluationContext" 
-                        xmlUrl="https://evaluationcontext.github.io/feed_rss_created.xml" 
-                        htmlUrl="https://evaluationcontext.github.io/"/>
+                        xmlUrl="https://evaluationcontext.com/feed_rss_created.xml" 
+                        htmlUrl="https://evaluationcontext.com/"/>
                 <outline type="rss" text="Kerry Kolosko" title="Kerry Kolosko" 
                         xmlUrl="https://kerrykolosko.com/feed/" 
                         htmlUrl="https://kerrykolosko.com/"/>
@@ -113,7 +113,7 @@ Resources to help you get up to speed with Power BI.
 | [Fabric Guru](https://fabric.guru/) | <span class="type-label blog">Blog</span> | Microsoft Fabric architecture, patterns, and adoption strategies by [Sandeep Pawar](https://www.linkedin.com/in/sanpawar/) | [:material-rss:](https://fabric.guru/rss.xml){target="_blank"} |
 | [Power BI Tips](https://powerbi.tips/) | <span class="type-label blog">Blog</span> | Practical tips, theme generators, and report design tutorials | [:material-rss:](https://powerbi.tips/feed/){target="_blank"} |
 | [Guy in a Cube](https://www.youtube.com/@GuyInACube/featured) | <span class="type-label video">Video</span> | Weekly YouTube videos with Power BI tips, feature updates, and live Q&A sessions | [:material-rss:](https://www.youtube.com/feeds/videos.xml?channel_id=UCFp1vaKzpfvoGai0vE5VJ0w){target="_blank"} |
-| [EvaluationContext](https://evaluationcontext.github.io/) | <span class="type-label blog">Blog</span> | Power BI development insights and technical articles by [Jake Duddy](https://www.linkedin.com/in/jakeduddy/) | [:material-rss:](https://evaluationcontext.github.io/feed_rss_created.xml){target="_blank"} |
+| [EvaluationContext](https://evaluationcontext.com/) | <span class="type-label blog">Blog</span> | Power BI development insights and technical articles by [Jake Duddy](https://www.linkedin.com/in/jakeduddy/) | [:material-rss:](https://evaluationcontext.com/feed_rss_created.xml){target="_blank"} |
 | [Power BI Blogs by Akshay Mishra](https://medium.com/@akshaymishrabi) | <span class="type-label blog">Blog</span> | Blogs focus on Power BI & DAX mastery with pedagogical approach along with Tips, Tricks and expert opinions | |
 | [Insightsinmotion](https://github.com/alexbadiu-insightsinmotion/PBI-Documentation) | <span class="type-label blog">Blog</span> | Series of articles covering components: Documentation, Themes, Deneb, TMDL & DAX Query View by [Alexandru Badiu](https://www.linkedin.com/in/alexandru-badiu/) and [Greg Philps](https://www.linkedin.com/in/gregphilps/) | |
 | [DAX Noob](https://daxnoob.blog/) | <span class="type-label blog">Blog</span> | DAX explanations, patterns, and learning tips by [Justin Martin](https://www.linkedin.com/in/daxnoobjustin/) | [:material-rss:](https://daxnoob.blog/feed/){target="_blank"} |

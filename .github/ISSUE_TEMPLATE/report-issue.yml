@@ -30,7 +30,7 @@ body:
     attributes:
       label: Page URL
       description: Which page has the issue?
-      placeholder: https://evaluationcontext.github.io/Power-BI-Nexus/best-practices/dax/
+      placeholder: https://evaluationcontext.com/Power-BI-Nexus/best-practices/dax/
     validations:
       required: true
 
