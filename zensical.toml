@@ -69,12 +69,16 @@ extra_javascript = [
   "assets/javascript/datatables-init.js"
 ]
 
+[project.extra]
+# Link preview image (overrides/main.html)
+og_image = "https://evaluationcontext.com/assets/images/projects/power-bi-nexus.png"
+
 [project.theme]
 # Overwrites
 # Read more:
 # - https://zensical.org/docs/customization/#extending-the-theme
 #
-# custom_dir = "overrides"
+custom_dir = "overrides"
 
 favicon = "fontawesome/solid/circle-nodes"
 
